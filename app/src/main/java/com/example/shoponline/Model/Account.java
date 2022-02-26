@@ -1,10 +1,10 @@
 package com.example.shoponline.Model;
 
 public class Account {
-    String Id;
+    long Id;
     String Username;
 
-    public String getId() {
+    public long getId() {
         return Id;
     }
 
@@ -16,7 +16,7 @@ public class Account {
         return Password;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         Id = id;
     }
 
