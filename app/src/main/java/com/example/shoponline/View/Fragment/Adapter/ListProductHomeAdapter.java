@@ -1,8 +1,8 @@
 package com.example.shoponline.View.Fragment.Adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
+import com.example.shoponline.View.DetailActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHomeAdapter.MyViewHolder> {
 
@@ -43,12 +43,28 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Product productList = list.get(position);
+        Product product = list.get(position);
 
         holder.imageView.setImageResource(R.mipmap.ic_launcher);
         holder.tvName.setText(list.get(position).getName());
         holder.tvPrice.setText(list.get(position).getPrice());
         holder.tvQuantity.setText(list.get(position).getQuantity());
+
+        holder.rlProdcut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToDetailProduct(product);
+            }
+        });
+    }
+
+    private void goToDetailProduct(Product product) {
+        Intent intent = new Intent(context, DetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object_product", product);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+
     }
 
     @Override
@@ -69,6 +85,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
             tvPrice = itemView.findViewById(R.id.tvPriceProduct);
             tvQuantity = itemView.findViewById(R.id.tvQuantityProduct);
             rlProdcut = itemView.findViewById(R.id.rlProduct);
+            tvCategory = itemView.findViewById(R.id.tvCategory);
         }
     }
 }
