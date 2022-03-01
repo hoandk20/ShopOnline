@@ -54,10 +54,10 @@ public class HomeFragment extends Fragment {
 
     private void addProdcut() {
         products = new ArrayList<Product>();
-        products.add(new Product("1","Iphone 13 pro Max", "3000", "100", ""));
-        products.add(new Product("1","Iphone 13 pro Max", "3000", "100", ""));
-        products.add(new Product("1","Iphone 13 pro Max", "3000", "100", ""));
-        products.add(new Product("1","Iphone 13 pro Max", "3000", "100", ""));
-        products.add(new Product("1","Iphone 13 pro Max", "3000", "100", ""));
+        products.add(new Product("1","Iphone 11 pro Max", "3000", "1000", ""));
+        products.add(new Product("1","Iphone 12 pro Max", "5000", "100", ""));
+        products.add(new Product("1","Iphone 13 pro Max", "6000", "70", ""));
+        products.add(new Product("1","Iphone 14 pro Max", "7000", "50", ""));
+        products.add(new Product("1","Iphone 15 pro Max", "8000", "10", ""));
     }
 }
