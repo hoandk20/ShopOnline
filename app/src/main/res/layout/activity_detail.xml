@@ -71,6 +71,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
+            android:id="@+id/ibPrevious"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/white"
@@ -87,6 +88,7 @@
             android:textSize="20sp" />
 
         <ImageButton
+            android:id="@+id/ibNext"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
