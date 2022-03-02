@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class API {
     public String Login = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/Login?InUsername=%s&InPassword=%s";
+    public String GetAllProducts = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllProducts";
 
     public String GetStringFromApi(String api){
 

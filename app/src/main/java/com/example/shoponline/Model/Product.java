@@ -17,6 +17,9 @@ public class Product implements Serializable {
         Quantity = quantity;
         ImageId = imageId;
     }
+    public  Product(){
+
+    }
 
     public String getId() {
         return Id;

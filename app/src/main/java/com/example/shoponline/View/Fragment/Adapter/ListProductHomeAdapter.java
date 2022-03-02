@@ -47,7 +47,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
 
         holder.imageView.setImageResource(R.mipmap.ic_launcher);
         holder.tvName.setText(list.get(position).getName());
-        holder.tvPrice.setText(list.get(position).getPrice());
+        holder.tvPrice.setText(list.get(position).getPrice()+"$");
         holder.tvQuantity.setText(list.get(position).getQuantity());
 
         holder.rlProdcut.setOnClickListener(new View.OnClickListener() {
