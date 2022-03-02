@@ -2,7 +2,10 @@ package com.example.shoponline.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,12 +14,13 @@ import com.example.shoponline.R;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private ImageView imageView;
-    private TextView tvName;
-    private TextView tvPrice;
-    private TextView tvCategory;
-    private TextView tvQuantity;
+    ImageView imageView;
+    TextView tvName ,tvPrice ,tvQuantity ,tvCategory, tvAmount, tvTotalPrice;
+    ImageButton ibPrevious, ibNext;
+    int amount = 0;
+    double totalPrice = 0;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,13 @@ public class DetailActivity extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPriceProduct);
         tvCategory = findViewById(R.id.tvCategory);
         tvQuantity = findViewById(R.id.tvQuantityProduct);
+        ibPrevious = findViewById(R.id.ibPrevious);
+        ibNext = findViewById(R.id.ibNext);
+        tvAmount = findViewById(R.id.tvAmount);
+        tvTotalPrice = findViewById(R.id.tvTotalPrice);
+
+        tvAmount.setText(Integer.toString(amount));
+        tvTotalPrice.setText(Double.toString(totalPrice));
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null){
@@ -37,5 +48,58 @@ public class DetailActivity extends AppCompatActivity {
         tvPrice.setText(product.getPrice());
         tvCategory.setText(product.getCategoryId());
         tvQuantity.setText(product.getQuantity());
+
+        initAction();
+    }
+
+    private void initAction() {
+        previousAction();
+        nextAction();
+    }
+
+    private void nextAction() {
+        ibNext.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(tvQuantity.getText().toString());
+                double price = Double.parseDouble(tvPrice.getText().toString());
+                if (amount < quantity){
+                    amount++;
+                    tvAmount.setText(Integer.toString(amount));
+                    totalPrice =  amount * price;
+                    tvTotalPrice.setText(Double.toString(totalPrice));
+                }
+                else {
+                    amount = quantity;
+                    tvAmount.setText(Integer.toString(amount));
+                    totalPrice =  amount * price;
+                    tvTotalPrice.setText(Double.toString(totalPrice));
+                }
+            }
+        });
+    }
+
+    private void previousAction() {
+        ibPrevious.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+                int quantity = Integer.parseInt(tvQuantity.getText().toString());
+                double price = Double.parseDouble(tvPrice.getText().toString());
+                if (amount > 0){
+                    amount--;
+                    tvAmount.setText(Integer.toString(amount));
+                    totalPrice =  amount * price;
+                    tvTotalPrice.setText(Double.toString(totalPrice));
+                }
+                else {
+                    amount = 0;
+                    tvAmount.setText(Integer.toString(amount));
+                    totalPrice =  amount * price;
+                    tvTotalPrice.setText(Double.toString(totalPrice));
+                }
+            }
+        });
     }
 }
