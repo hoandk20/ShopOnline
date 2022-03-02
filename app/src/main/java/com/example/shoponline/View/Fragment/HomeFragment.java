@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.shoponline.Controller.CategoryController;
 import com.example.shoponline.Controller.ProductController;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
@@ -59,5 +60,12 @@ public class HomeFragment extends Fragment {
         products = new ArrayList<Product>();
         ProductController productController = new ProductController();
         products = productController.GetAllProducts();
+
+
+        //test API
+        CategoryController categoryController = new CategoryController();
+        categoryController.GetAllCategory();
+        productController.GetProductsByCategoryId(1);
+
     }
 }
