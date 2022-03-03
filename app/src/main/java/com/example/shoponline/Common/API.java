@@ -11,6 +11,7 @@ public class API {
     public String GetAllProducts = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllProducts";
     public String GetAllCategorys="https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllCategorys";
     public String GetAllProductByCategoryId= "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetProductByCategoryId?InCategoryId=%s";
+    public String GetImageById = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetImageById?InId=%s";
 
     public String GetStringFromApi(String api){
 
