@@ -12,15 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopOnline">
         <activity
-            android:name=".View.RegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".View.ProductsPurchased_Activity"
-            android:exported="false" />
-        <activity
-            android:name=".View.EditPasswordActivity"
-            android:exported="false" />
-        <activity
             android:name=".View.EditProfileActivity"
             android:exported="false" />
         <activity
