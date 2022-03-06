@@ -1,5 +1,6 @@
 package com.example.shoponline.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,8 +10,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+//import android.widget.GridLayout;
+import androidx.gridlayout.widget.GridLayout;
+import android.widget.TextView;
 
 import com.example.shoponline.R;
+import com.example.shoponline.View.EditPasswordActivity;
+import com.example.shoponline.View.EditProfileActivity;
+import com.example.shoponline.View.ProductsPurchased_Activity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,9 +74,48 @@ public class MenuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_menu, container, false);
     }
 
+    private Button btnLogout;
+    private TextView textUserName;
+    private TextView textPhone;
+    private TextView textAddress;
+    private GridLayout grid_product_purchased;
+    private GridLayout grid_editProfile;
+    private GridLayout grid_editPassword;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnLogout = view.findViewById(R.id.btnLogOut);
+        textUserName = view.findViewById(R.id.textUserName);
+        textPhone = view.findViewById(R.id.textphone);
+        textAddress = view.findViewById(R.id.textaddress);
+        grid_product_purchased = view.findViewById(R.id.grid_products_purchased);
+        grid_editProfile = view.findViewById(R.id.grid_editProfile);
+        grid_editPassword = view.findViewById(R.id.grid_editPass);
+
+        grid_editPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EditPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+        grid_editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        grid_product_purchased.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ProductsPurchased_Activity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
