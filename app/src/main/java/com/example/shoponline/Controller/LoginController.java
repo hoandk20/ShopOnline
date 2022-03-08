@@ -1,6 +1,7 @@
 package com.example.shoponline.Controller;
 
 import com.example.shoponline.Common.API;
+import com.example.shoponline.Model.Account;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,5 +22,9 @@ public class LoginController {
             e.printStackTrace();
         }
         return false;
+    }
+    public void InsertAccount(Account account){
+        String ApiLogin = String.format(api.InsertAccount,account.getUsername(),account.getPassword(),account.getPhone(),account.getAddress());
+        String content = api.GetStringFromApi(ApiLogin);
     }
 }

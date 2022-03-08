@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.example.shoponline.Controller.LoginController;
 import com.example.shoponline.R;
 import com.example.shoponline.View.MainActivity;
+import com.example.shoponline.View.RegistrationActivity;
 
 
 public class LoginFragment extends Fragment {
@@ -25,6 +26,7 @@ public class LoginFragment extends Fragment {
     private EditText Username;
     private EditText Password;
     private Button btnLogin;
+    private Button btnRegister;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class LoginFragment extends Fragment {
         Username = view.findViewById(R.id.editTextLoginUsername);
         Password = view.findViewById(R.id.editTextPassword);
         btnLogin = view.findViewById(R.id.buttonLogin);
+        btnRegister = view.findViewById(R.id.btnRegistration);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +60,14 @@ public class LoginFragment extends Fragment {
 
                     toast.show();
                 }
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), RegistrationActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -3,7 +3,14 @@ package com.example.shoponline.Model;
 public class Account {
     long Id;
     String Username;
+    String phone;
 
+    public Account() {
+    }
+
+    String Password;
+
+    String address;
     public long getId() {
         return Id;
     }
@@ -28,15 +35,12 @@ public class Account {
         Password = password;
     }
 
-    String Password;
 
-    int phone;
-    String address;
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
