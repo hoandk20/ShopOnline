@@ -1,5 +1,8 @@
 package com.example.shoponline.View.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.shoponline.Controller.LoginController;
 import com.example.shoponline.R;
+import com.example.shoponline.View.MainActivity;
 
 
 public class LoginFragment extends Fragment {
@@ -24,7 +28,7 @@ public class LoginFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
     @Override
@@ -42,6 +46,12 @@ public class LoginFragment extends Fragment {
                 if(isSucess){
                     Toast toast =Toast.makeText(view.getContext(),"login sucessfull",Toast.LENGTH_LONG);
                     toast.show();
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("UserId",Username.getText().toString());
+                    editor.commit();
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(intent);
                 }else{
                     Toast toast= Toast.makeText(view.getContext(),"login failure",Toast.LENGTH_LONG);
 

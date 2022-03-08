@@ -26,8 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:ems="10"
+            android:hint="username"
             android:inputType="textPersonName"
-            android:text="Username"
+            android:minHeight="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,8 +40,9 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="39dp"
             android:ems="10"
+            android:hint="password"
             android:inputType="textPersonName"
-            android:text="Password"
+            android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/editTextLoginUsername"
             app:layout_constraintTop_toBottomOf="@+id/editTextLoginUsername" />
 

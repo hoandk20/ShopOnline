@@ -1,6 +1,8 @@
 package com.example.shoponline.View.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import com.example.shoponline.R;
 import com.example.shoponline.View.EditPasswordActivity;
 import com.example.shoponline.View.EditProfileActivity;
+import com.example.shoponline.View.MainActivity;
 import com.example.shoponline.View.ProductsPurchased_Activity;
 
 /**
@@ -112,6 +115,17 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ProductsPurchased_Activity.class);
+                startActivity(intent);
+            }
+        });
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("UserId","");
+                editor.commit();
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
