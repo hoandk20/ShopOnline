@@ -1,7 +1,5 @@
 package com.example.shoponline.Controller;
 
-import android.media.Image;
-
 import com.example.shoponline.Common.API;
 import com.example.shoponline.Model.Product;
 
@@ -9,10 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductController {
     API api = new API();
@@ -78,11 +73,6 @@ public class ProductController {
         }
         return list;
     }
-    public String getLinkImageById(long Imageid){
-        String Api = String.format(api.GetImageById,Imageid);
-        String content = api.GetStringFromApi(Api);
-        return content;
 
-    }
 
 }
