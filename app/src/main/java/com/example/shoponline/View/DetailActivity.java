@@ -3,12 +3,14 @@ package com.example.shoponline.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.shoponline.Common.ImageSupport;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 
@@ -34,27 +36,31 @@ public class DetailActivity extends AppCompatActivity {
         ibNext = findViewById(R.id.ibNext);
         tvAmount = findViewById(R.id.tvAmount);
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
-
         tvAmount.setText(Integer.toString(amount));
         tvTotalPrice.setText(Double.toString(totalPrice));
-
-        Bundle bundle = getIntent().getExtras();
-        if (bundle == null){
-            return;
-        }
-        Product product = (Product) bundle.get("object_product");
-        imageView.setImageResource(R.mipmap.ic_launcher);
-        tvName.setText(product.getName());
-        tvPrice.setText(product.getPrice());
-        tvCategory.setText(product.getCategoryId());
-        tvQuantity.setText(product.getQuantity());
 
         initAction();
     }
 
     private void initAction() {
+        loadDetail();
         previousAction();
         nextAction();
+    }
+
+    private void loadDetail() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null){
+            return;
+        }
+        Product product = (Product) bundle.get("object_product");
+        ImageSupport imageSupport = new ImageSupport();
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(Long.parseLong(product.getImageId()));
+        imageView.setImageBitmap(btmImage);
+        tvName.setText(product.getName());
+        tvPrice.setText(product.getPrice());
+        tvCategory.setText(product.getCategoryId());
+        tvQuantity.setText(product.getQuantity());
     }
 
     private void nextAction() {

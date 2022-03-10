@@ -48,8 +48,6 @@ public class HomeFragment extends Fragment {
 
         listProductHomeAdapter = new ListProductHomeAdapter(getContext(), products);
         rvProducts.setAdapter(listProductHomeAdapter);
-        ProductController productController = new ProductController();
-        productController.GetAllProducts();
     }
 
     private void initAction() {
