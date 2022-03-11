@@ -17,6 +17,7 @@ import android.widget.Button;
 import androidx.gridlayout.widget.GridLayout;
 import android.widget.TextView;
 
+import com.example.shoponline.Model.Account;
 import com.example.shoponline.R;
 import com.example.shoponline.View.EditPasswordActivity;
 import com.example.shoponline.View.EditProfileActivity;
@@ -81,9 +82,9 @@ public class MenuFragment extends Fragment {
     private TextView textUserName;
     private TextView textPhone;
     private TextView textAddress;
-    private GridLayout grid_product_purchased;
-    private GridLayout grid_editProfile;
-    private GridLayout grid_editPassword;
+    private TextView textProducts_purchased;
+    private TextView texteditProfile;
+    private TextView texteditPass;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -93,25 +94,31 @@ public class MenuFragment extends Fragment {
         textUserName = view.findViewById(R.id.textUserName);
         textPhone = view.findViewById(R.id.textphone);
         textAddress = view.findViewById(R.id.textaddress);
-        grid_product_purchased = view.findViewById(R.id.grid_products_purchased);
-        grid_editProfile = view.findViewById(R.id.grid_editProfile);
-        grid_editPassword = view.findViewById(R.id.grid_editPass);
+        textProducts_purchased = view.findViewById(R.id.textProducts_purchased);
+        texteditProfile = view.findViewById(R.id.texteditProfile);
+        texteditPass = view.findViewById(R.id.texteditPass);
 
-        grid_editPassword.setOnClickListener(new View.OnClickListener() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+
+        textUserName.setText(sharedPreferences.getString("UserId",""));
+        textPhone.setText(sharedPreferences.getString("phone",""));
+        textAddress.setText(sharedPreferences.getString("address",""));
+
+        texteditPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditPasswordActivity.class);
                 startActivity(intent);
             }
         });
-        grid_editProfile.setOnClickListener(new View.OnClickListener() {
+        texteditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditProfileActivity.class);
                 startActivity(intent);
             }
         });
-        grid_product_purchased.setOnClickListener(new View.OnClickListener() {
+        textProducts_purchased.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ProductsPurchased_Activity.class);
@@ -124,6 +131,12 @@ public class MenuFragment extends Fragment {
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("UserId","");
+
+                //change
+                editor.putString("phone","");
+                editor.putString("address","");
+                editor.putString("password","");
+
                 editor.commit();
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
                 startActivity(intent);

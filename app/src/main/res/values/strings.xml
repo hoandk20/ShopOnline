@@ -15,16 +15,18 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="EditProfile">Sửa hồ sơ</string>
-    <string name="Name">Tên đăng nhập</string>
-    <string name="phoneView">Số điện thoại</string>
-    <string name="addressView">Địa chỉ</string>
-    <string name="Button">Lưu</string>
-    <string name="oldPassword">Mật khẩu cũ</string>
-    <string name="newPassword">Mật khẩu cũ</string>
-    <string name="inputPass">Nhập lại mật khẩu mới</string>
-    <string name="editPass">Thay đổi mật khẩu</string>
-    <string name="btnlogout">Đăng xuất</string>
-    <string name="products_purchased">Sản phẩm đã mua</string>
+    <string name="EditProfile">Edit Profile</string>
+    <string name="Name">User name</string>
+    <string name="phoneView">Phone number</string>
+    <string name="addressView">Address</string>
+    <string name="Button">Save</string>
+    <string name="oldPassword">Old password</string>
+    <string name="newPassword">New password</string>
+    <string name="inputPass">Confirm password</string>
+    <string name="editPass">Change password</string>
+    <string name="btnlogout">Log out</string>
+    <string name="products_purchased">Products purchased</string>
     <string name="Name_app">OnlineShop</string>
+    <string name="From">From</string>
+    <string name="To">To</string>
 </resources>

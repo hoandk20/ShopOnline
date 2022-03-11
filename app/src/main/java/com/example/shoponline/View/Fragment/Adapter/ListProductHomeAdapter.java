@@ -78,6 +78,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
+
         ImageView imageView;
         TextView tvName, tvPrice, tvQuantity, tvCategory;
         RelativeLayout rlProdcut;
@@ -90,6 +91,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
             tvQuantity = itemView.findViewById(R.id.tvQuantityProduct);
             rlProdcut = itemView.findViewById(R.id.rlProduct);
             tvCategory = itemView.findViewById(R.id.tvCategory);
+
         }
     }
 }
