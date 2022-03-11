@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageOrderPurchased"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/priceDetailOrderPurchased"
+        android:layout_width="164dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="19dp"
+        android:text="13.000.000 đ"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberDetailOrderPurchased" />
+
+    <TextView
+        android:id="@+id/priceAllOrderPurchased"
+        android:layout_width="164dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="19dp"
+        android:text="Thành tiền: 13.000.000 đ"
+        android:textAlignment="textEnd"
+        android:textColor="#ED0909"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberDetailOrderPurchased" />
+
+    <TextView
+        android:id="@+id/DetailViewOrderPurchased"
+        android:layout_width="411dp"
+        android:layout_height="31dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/numberDetailOrderPurchased"
+        android:layout_width="66dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="19dp"
+        android:text="x1"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameProductOrderPurchased" />
+
+    <TextView
+        android:id="@+id/typeOrderPurchased"
+        android:layout_width="50dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:text="64GB"
+        app:layout_constraintStart_toEndOf="@+id/imageOrderPurchased"
+        app:layout_constraintTop_toBottomOf="@+id/nameProductOrderPurchased" />
+
+    <TextView
+        android:id="@+id/nameProductOrderPurchased"
+        android:layout_width="254dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        android:text="Điện thoại"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageOrderPurchased"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="9dp"
+        android:background="#A9A9A9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageOrderPurchased" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="	#A9A9A9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DetailViewOrderPurchased" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="48dp"
+        android:background="	#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DetailViewOrderPurchased" />
+
+    <TextView
+        android:id="@+id/numberTotalOrderPurchased"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="3 sản phẩm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

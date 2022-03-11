@@ -1,6 +1,8 @@
 package com.example.shoponline.Model;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     long Id;
     String Username;
     String phone;
@@ -52,5 +54,10 @@ public class Account {
         this.address = address;
     }
 
-
+    public Account(String username, String phone, String password, String address) {
+        Username = username;
+        this.phone = phone;
+        Password = password;
+        this.address = address;
+    }
 }

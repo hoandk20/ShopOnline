@@ -16,9 +16,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.shoponline.Controller.LoginController;
+import com.example.shoponline.Model.Account;
 import com.example.shoponline.R;
 import com.example.shoponline.View.MainActivity;
 import com.example.shoponline.View.RegistrationActivity;
+
+import java.io.Serializable;
 
 
 public class LoginFragment extends Fragment {
@@ -49,12 +52,21 @@ public class LoginFragment extends Fragment {
                 if(isSucess){
                     Toast toast =Toast.makeText(view.getContext(),"login sucessfull",Toast.LENGTH_LONG);
                     toast.show();
+
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("UserId",Username.getText().toString());
+
+                    //Change
+                    editor.putString("password",Password.getText().toString());
+                    editor.putString("phone","123456");
+                    editor.putString("address","HL_HN");
+
+
                     editor.commit();
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     startActivity(intent);
+
                 }else{
                     Toast toast= Toast.makeText(view.getContext(),"login failure",Toast.LENGTH_LONG);
 
