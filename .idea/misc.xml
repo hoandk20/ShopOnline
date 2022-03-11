@@ -30,11 +30,12 @@
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/activity_edit_profile.xml" value="0.264" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/activity_products_purchased.xml" value="0.264" />
+        <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/activity_registration.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/fragment_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/fragment_list_purchased_order.xml" value="0.264" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/fragment_menu.xml" value="0.264" />
+        <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/fragment_menu.xml" value="0.25" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/item_order_purchased.xml" value="0.264" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/layout/item_product_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25416666666666665" />
