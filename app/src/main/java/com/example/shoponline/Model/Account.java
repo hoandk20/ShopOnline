@@ -11,6 +11,7 @@ public class Account {
     String Password;
 
     String address;
+    long ImageId;
     public long getId() {
         return Id;
     }
