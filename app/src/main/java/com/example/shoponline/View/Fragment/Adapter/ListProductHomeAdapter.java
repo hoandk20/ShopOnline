@@ -2,6 +2,7 @@ package com.example.shoponline.View.Fragment.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.shoponline.Common.ImageSupport;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.DetailActivity;
@@ -29,7 +31,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
         this.list = list;
     }
 
-    public void updateData(ArrayList<Product> list){
+    public void updateData(ArrayList<Product> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -37,7 +39,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_home,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_home, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -45,9 +47,11 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Product product = list.get(position);
 
-        holder.imageView.setImageResource(R.mipmap.ic_launcher);
+        ImageSupport imageSupport = new ImageSupport();
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(Long.parseLong(list.get(position).getImageId()));
+        holder.imageView.setImageBitmap(btmImage);
         holder.tvName.setText(list.get(position).getName());
-        holder.tvPrice.setText(list.get(position).getPrice()+"$");
+        holder.tvPrice.setText(list.get(position).getPrice() + "$");
         holder.tvQuantity.setText(list.get(position).getQuantity());
 
         holder.rlProdcut.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +76,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
 
         ImageView imageView;
