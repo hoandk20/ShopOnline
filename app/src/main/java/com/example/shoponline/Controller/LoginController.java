@@ -27,4 +27,9 @@ public class LoginController {
         String ApiLogin = String.format(api.InsertAccount,account.getUsername(),account.getPassword(),account.getPhone(),account.getAddress());
         String content = api.GetStringFromApi(ApiLogin);
     }
+    public Account GetAccountByName(String name){
+        Account a = new Account();
+
+        return a;
+    }
 }

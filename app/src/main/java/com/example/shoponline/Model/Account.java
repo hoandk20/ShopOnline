@@ -13,6 +13,19 @@ public class Account implements Serializable {
     String Password;
 
     String address;
+
+    public void setId(long id) {
+        Id = id;
+    }
+
+    public long getImageId() {
+        return ImageId;
+    }
+
+    public void setImageId(long imageId) {
+        ImageId = imageId;
+    }
+
     long ImageId;
     public long getId() {
         return Id;

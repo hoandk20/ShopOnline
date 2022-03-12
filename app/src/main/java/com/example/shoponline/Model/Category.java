@@ -12,6 +12,11 @@ public class Category {
         return id;
     }
 
+    public Category(long id, String categoryName) {
+        this.id = id;
+        this.categoryName = categoryName;
+    }
+
     public Category() {
     }
 
