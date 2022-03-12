@@ -21,6 +21,9 @@
             android:name=".View.ProductsPurchased_Activity"
             android:exported="false" />
         <activity
+            android:name=".View.RegistrationActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.DetailActivity"
             android:exported="false" />
         <activity
