@@ -31,8 +31,9 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
         this.list = list;
     }
 
-    public void updateData(ArrayList<Product> list) {
-        this.list = list;
+    public void updateData(ArrayList<Product> mlist) {
+        this.list.clear();
+        this.list.addAll(mlist);
         notifyDataSetChanged();
     }
 
