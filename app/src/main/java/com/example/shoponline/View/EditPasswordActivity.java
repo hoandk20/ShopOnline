@@ -1,8 +1,6 @@
 package com.example.shoponline.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 
 import android.content.Intent;
@@ -17,18 +15,14 @@ import android.widget.Toast;
 
 
 import com.example.shoponline.R;
-import com.example.shoponline.View.Fragment.MenuFragment;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 
 public class EditPasswordActivity extends AppCompatActivity {
 
-  //  private EditText editNew, editRe_end;
+    private EditText editNew, editOld,editRe_end;
     private Button btnSave;
     private TextView textNoti;
     private TextView imageLeftPass;
-    private TextInputEditText editOld,editNew, editRe_end;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +62,6 @@ public class EditPasswordActivity extends AppCompatActivity {
         imageLeftPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(EditPasswordActivity.this, MainActivity.class);
-                startActivity(intent);
 
             }
         });

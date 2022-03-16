@@ -62,6 +62,7 @@ public class LoginFragment extends Fragment {
                     editor.putString("phone","123456");
                     editor.putString("address","HL_HN");
 
+
                     editor.commit();
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     startActivity(intent);
