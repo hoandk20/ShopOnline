@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 //import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.shoponline.Common.ImageSupport;
 import com.example.shoponline.MapActivity;
 import com.example.shoponline.R;
 import com.example.shoponline.View.EditPasswordActivity;
@@ -85,6 +87,7 @@ public class MenuFragment extends Fragment {
     private TextView texteditProfile;
     private TextView texteditPass;
     private TextView texteditLocation;
+    private ImageView imageView;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -98,12 +101,15 @@ public class MenuFragment extends Fragment {
         texteditProfile = view.findViewById(R.id.texteditProfile);
         texteditPass = view.findViewById(R.id.texteditPass);
         texteditLocation = view.findViewById(R.id.texteditLocation);
-
+        imageView = view.findViewById(R.id.imageViewProfile);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
 
-        textUserName.setText(sharedPreferences.getString("UserId",""));
-        textPhone.setText(sharedPreferences.getString("phone",""));
-        textAddress.setText(sharedPreferences.getString("address",""));
+        textUserName.setText(sharedPreferences.getString("Username",""));
+        textPhone.setText(sharedPreferences.getString("Phone",""));
+        textAddress.setText(sharedPreferences.getString("Address",""));
+         String imageId = sharedPreferences.getString("ImageId","");
+        ImageSupport imageSupport = new ImageSupport();
+        imageView.setImageBitmap(imageSupport.getBitMapImagebyId(imageId));
 
 
         texteditLocation.setOnClickListener(new View.OnClickListener() {
@@ -141,11 +147,12 @@ public class MenuFragment extends Fragment {
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("UserId","");
+                editor.putString("Username","");
 
                 //change
-                editor.putString("phone","");
-                editor.putString("address","");
-                editor.putString("password","");
+                editor.putString("Phone","");
+                editor.putString("Address","");
+                editor.putString("Password","");
 
                 editor.commit();
                 Intent intent = new Intent(view.getContext(), MainActivity.class);

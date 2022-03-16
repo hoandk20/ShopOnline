@@ -69,8 +69,7 @@ public class EditPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(EditPasswordActivity.this, MainActivity.class);
-                startActivity(intent);
+                finish();
 
             }
         });

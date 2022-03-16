@@ -12,7 +12,20 @@ public class Account implements Serializable {
 
     String Password;
 
+    public void setId(long id) {
+        Id = id;
+    }
+
+    public String getImageId() {
+        return ImageId;
+    }
+
+    public void setImageId(String imageId) {
+        ImageId = imageId;
+    }
+
     String address;
+    String ImageId;
     public long getId() {
         return Id;
     }

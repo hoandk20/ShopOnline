@@ -55,17 +55,15 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         loadData();
         SharedPreferences pref = getSharedPreferences("User",MODE_PRIVATE);
-        String UserId = pref.getString("UserId","");
-        isLogin = (UserId=="")?false:true;
+        String Username = pref.getString("Username","");
+        isLogin = (Username=="")?false:true;
 
-        if(isLogin){
+
             replayceFragment(new HomeFragment());
             bottomNavigationView = findViewById(R.id.bottomNavigationView);
             initAction();
             action();
-        }else{
-            replayceFragment(new LoginFragment());
-        }
+
 
     }
 
@@ -107,16 +105,28 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.home:
-                    replayceFragment(new HomeFragment());
+                        replayceFragment(new HomeFragment());
                     break;
                 case R.id.cart:
-                    replayceFragment(new CartFragment());
+
+                    if(isLogin){   replayceFragment(new CartFragment());
+                    }else{
+                        replayceFragment(new LoginFragment());
+                    }
                     break;
                 case R.id.notification:
-                    replayceFragment(new NotificationFragment());
+                    if(isLogin){  replayceFragment(new NotificationFragment());
+                    }else{
+                        replayceFragment(new LoginFragment());
+                    }
+
                     break;
                 case R.id.menu:
-                    replayceFragment(new MenuFragment());
+                    if(isLogin){  replayceFragment(new MenuFragment());
+                    }else{
+                        replayceFragment(new LoginFragment());
+                    }
+
                     break;
             }
             return true;

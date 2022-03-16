@@ -14,7 +14,7 @@ import java.util.Base64;
 
 public class ImageSupport {
     API api = new API();
-    public String getLinkImageById(long Imageid){
+    public String getLinkImageById(String Imageid){
         String Api = String.format(api.GetImageById,Imageid);
         String content = api.GetStringFromApi(Api);
 
@@ -49,7 +49,7 @@ public class ImageSupport {
       return listBase64;
     }
 
-    public Bitmap getBitMapImagebyId(long ImageId){
+    public Bitmap getBitMapImagebyId(String ImageId){
         String base64String = getLinkImageById(ImageId);
         byte[] decodedString = Base64.getDecoder().decode(base64String);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);

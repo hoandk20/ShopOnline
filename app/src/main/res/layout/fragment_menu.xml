@@ -34,7 +34,7 @@
                     android:text="@string/phoneView"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -61,13 +61,13 @@
 
                 <TextView
                     android:id="@+id/textUserName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="65dp"
+                    android:layout_height="39dp"
                     android:layout_marginStart="36dp"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginTop="36dp"
                     android:text="name"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewProfile"
                     app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                 <TextView
@@ -96,7 +96,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textProducts_purchased" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageViewProfile"
                     android:layout_width="81dp"
                     android:layout_height="86dp"
                     android:layout_marginStart="44dp"

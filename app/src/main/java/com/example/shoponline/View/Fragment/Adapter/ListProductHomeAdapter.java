@@ -48,7 +48,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
         Product product = list.get(position);
 
         ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(Long.parseLong(list.get(position).getImageId()));
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());
         holder.imageView.setImageBitmap(btmImage);
         holder.tvName.setText(list.get(position).getProductName());
         holder.tvPrice.setText(list.get(position).getProductPrice() + "$");

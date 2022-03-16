@@ -55,12 +55,17 @@ public class LoginFragment extends Fragment {
 
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("UserId",Username.getText().toString());
 
+
+                    Account a   = loginController.getAccountByName(Username.getText().toString());
                     //Change
-                    editor.putString("password",Password.getText().toString());
-                    editor.putString("phone","123456");
-                    editor.putString("address","HL_HN");
+                    editor.putLong("UserId",a.getId());
+                    editor.putString("Username",Username.getText().toString());
+                    editor.putString("Password",Password.getText().toString());
+                    editor.putString("Phone",a.getPhone());
+                    editor.putString("Address",a.getAddress());
+                    editor.putString("ImageId",a.getImageId());
+
 
                     editor.commit();
                     Intent intent = new Intent(view.getContext(), MainActivity.class);

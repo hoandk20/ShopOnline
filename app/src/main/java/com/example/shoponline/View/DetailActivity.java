@@ -55,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
         }
         Product product = (Product) bundle.get("object_product");
         ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(Long.parseLong(product.getImageId()));
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(product.getImageId());
         imageView.setImageBitmap(btmImage);
         tvName.setText(product.getProductName());
         tvPrice.setText(product.getProductPrice());
