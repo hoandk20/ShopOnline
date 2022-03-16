@@ -7,16 +7,16 @@ import java.util.Base64;
 
 public class ImageSupport {
     API api = new API();
-    public String getLinkImageById(long Imageid){
-        String Api = String.format(api.GetImageById,Imageid);
+    public String getLinkImageById(long imageId){
+        String Api = String.format(api.GetImageById,imageId);
         String content = api.GetStringFromApi(Api);
 
         return content;
 
     }
 
-    public Bitmap getBitMapImagebyId(long ImageId){
-        String base64String = getLinkImageById(ImageId);
+    public Bitmap getBitMapImageById(long imageId){
+        String base64String = getLinkImageById(imageId);
         byte[] decodedString = Base64.getDecoder().decode(base64String);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;

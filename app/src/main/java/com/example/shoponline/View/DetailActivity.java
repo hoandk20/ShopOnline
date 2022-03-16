@@ -5,14 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shoponline.Common.ImageSupport;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -21,6 +26,7 @@ public class DetailActivity extends AppCompatActivity {
     ImageButton ibPrevious, ibNext;
     int amount = 0;
     double totalPrice = 0;
+    Button btnAddToCart;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -38,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
         tvAmount.setText(Integer.toString(amount));
         tvTotalPrice.setText(Double.toString(totalPrice));
+        btnAddToCart = findViewById(R.id.btnAddToCart);
 
         initAction();
     }
@@ -46,6 +53,28 @@ public class DetailActivity extends AppCompatActivity {
         loadDetail();
         previousAction();
         nextAction();
+        addToCart();
+    }
+
+    private void addToCart(){
+        // Sau sửa thành listProductCart get từ Controller
+        ArrayList<Product> products = new ArrayList<>();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null){
+            return;
+        }
+        Product product = (Product) bundle.get("object_product");
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //add
+                products.add(product);
+
+                Toast toast=Toast.makeText(DetailActivity.this, "Thêm sản phẩm thành công",   Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+            }
+        });
     }
 
     private void loadDetail() {
@@ -55,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
         }
         Product product = (Product) bundle.get("object_product");
         ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(Long.parseLong(product.getImageId()));
+        Bitmap btmImage = imageSupport.getBitMapImageById(Long.parseLong(product.getImageId()));
         imageView.setImageBitmap(btmImage);
         tvName.setText(product.getName());
         tvPrice.setText(product.getPrice());

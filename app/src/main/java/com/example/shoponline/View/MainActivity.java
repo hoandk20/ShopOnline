@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.shoponline.Common.API;
 import com.example.shoponline.Controller.LoginController;
+import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.CartFragment;
 import com.example.shoponline.View.Fragment.HomeFragment;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
+
 }
