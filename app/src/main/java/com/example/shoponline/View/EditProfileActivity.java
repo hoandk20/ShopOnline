@@ -2,7 +2,6 @@ package com.example.shoponline.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.shoponline.Controller.LoginController;
-import com.example.shoponline.Model.Account;
 import com.example.shoponline.R;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -33,35 +30,28 @@ public class EditProfileActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
 
-
-        Intent intent = getIntent();
-        Account a = (Account)intent.getSerializableExtra("Account");
-
-        editUserName.setText(a.getUsername());
-        editPhone.setText(a.getPhone());
-        editAddress.setText(a.getAddress());
+        editUserName.setText(sharedPreferences.getString("UserId",""));
+        editPhone.setText(sharedPreferences.getString("phone",""));
+        editAddress.setText(sharedPreferences.getString("address",""));
 
 
         btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Account edit = new Account();
-                edit.setId(a.getId());
-                edit.setUsername(editUserName.getText().toString());
-                edit.setPhone(editPhone.getText().toString());
-                edit.setAddress(editAddress.getText().toString());
-                edit.setImageId(a.getImageId());
-                LoginController loginController = new LoginController();
-                loginController.UpdateAccount(edit);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("UserId",editUserName.getText().toString());
+                editor.putString("address",editAddress.getText().toString());
+                editor.putString("phone",editPhone.getText().toString());
+                editor.apply();
+
                 Toast.makeText(view.getContext(),"Change profile successfully",Toast.LENGTH_LONG).show();
-                finish();
             }
         });
 
         imageLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+
             }
         });
     }

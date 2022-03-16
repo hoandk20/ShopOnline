@@ -3,36 +3,25 @@ package com.example.shoponline.View.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 //import android.widget.GridLayout;
-import androidx.gridlayout.widget.GridLayout;
-
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.shoponline.Common.ImageSupport;
-import com.example.shoponline.Controller.LoginController;
-import com.example.shoponline.Model.Account;
+import com.example.shoponline.MapActivity;
 import com.example.shoponline.R;
 import com.example.shoponline.View.EditPasswordActivity;
 import com.example.shoponline.View.EditProfileActivity;
 import com.example.shoponline.View.MainActivity;
 import com.example.shoponline.View.ProductsPurchased_Activity;
-
-import java.util.Timer;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,13 +84,12 @@ public class MenuFragment extends Fragment {
     private TextView textProducts_purchased;
     private TextView texteditProfile;
     private TextView texteditPass;
-    private ImageView imageView;
-    Account a;
+    private TextView texteditLocation;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        a = new Account();
+
         btnLogout = view.findViewById(R.id.btnLogOut);
         textUserName = view.findViewById(R.id.textUserName);
         textPhone = view.findViewById(R.id.textphone);
@@ -109,11 +97,22 @@ public class MenuFragment extends Fragment {
         textProducts_purchased = view.findViewById(R.id.textProducts_purchased);
         texteditProfile = view.findViewById(R.id.texteditProfile);
         texteditPass = view.findViewById(R.id.texteditPass);
-        imageView = view.findViewById(R.id.imageViewProfile);
+        texteditLocation = view.findViewById(R.id.texteditLocation);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+
+        textUserName.setText(sharedPreferences.getString("UserId",""));
+        textPhone.setText(sharedPreferences.getString("phone",""));
+        textAddress.setText(sharedPreferences.getString("address",""));
 
 
-
-
+        texteditLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
 
         texteditPass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +125,6 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditProfileActivity.class);
-                intent.putExtra("Account",a);
                 startActivity(intent);
             }
         });
@@ -143,31 +141,18 @@ public class MenuFragment extends Fragment {
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("UserId","");
+
+                //change
+                editor.putString("phone","");
+                editor.putString("address","");
+                editor.putString("password","");
+
                 editor.commit();
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        textUserName.post(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
-                LoginController loginController = new LoginController();
-                String username = sharedPreferences.getString("UserId","");
-                a = loginController.GetAccountByName(username);
-                textUserName.setText(a.getUsername());
-                textPhone.setText(a.getPhone());
-                textAddress.setText(a.getAddress());
-                ImageSupport imageSupport = new ImageSupport();
-                Bitmap b = imageSupport.getBitMapImagebyId(a.getImageId());
-                imageView.setImageBitmap(b);
-            }
-        });
-
-
 
     }
-
-
 }
