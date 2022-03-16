@@ -1,18 +1,34 @@
 package com.example.shoponline.Model;
 
-public class Category {
-    long id;
-    String categoryName;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-    public long getId() {
-        return id;
+@Entity
+public class Category {
+    @PrimaryKey(autoGenerate = true)
+    private long categoryId;
+    @ColumnInfo
+    private String categoryName;
+
+    public Category(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public Category(long categoryId, String categoryName) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
     public Category() {
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getCategoryName() {
@@ -21,5 +37,10 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    @Override
+    public String toString() {
+        return categoryName;
     }
 }

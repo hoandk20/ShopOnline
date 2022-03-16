@@ -25,11 +25,11 @@ public class ProductController {
                     Product p = new Product();
                     JSONObject o = new JSONObject();
                     o = (JSONObject)jsonArray.getJSONObject(i);
-                    p.setId(o.getString("Id"));
-                    p.setCategoryId(o.getString("CategoryId"));
-                    p.setName(o.getString("Name"));
-                    p.setPrice(o.getString("Price"));
-                    p.setQuantity(o.getString("Quantity"));
+                    p.setProductId(o.getString("Id"));
+                    p.setCatelogyOwnerId(o.getString("CategoryId"));
+                    p.setProductName(o.getString("Name"));
+                    p.setProductPrice(o.getString("Price"));
+                    p.setProductQuantity(o.getString("Quantity"));
                     p.setImageId(o.getString("ImageId"));
                     list.add(p);
 
@@ -56,11 +56,11 @@ public class ProductController {
                     Product p = new Product();
                     JSONObject o = new JSONObject();
                     o = (JSONObject)jsonArray.getJSONObject(i);
-                    p.setId(o.getString("Id"));
-                    p.setCategoryId(o.getString("CategoryId"));
-                    p.setName(o.getString("Name"));
-                    p.setPrice(o.getString("Price"));
-                    p.setQuantity(o.getString("Quantity"));
+                    p.setProductId(o.getString("Id"));
+                    p.setCatelogyOwnerId(o.getString("CategoryId"));
+                    p.setProductName(o.getString("Name"));
+                    p.setProductPrice(o.getString("Price"));
+                    p.setProductQuantity(o.getString("Quantity"));
                     p.setImageId(o.getString("ImageId"));
                     list.add(p);
 

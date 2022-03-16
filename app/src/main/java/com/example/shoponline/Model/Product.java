@@ -1,64 +1,82 @@
 package com.example.shoponline.Model;
 
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
-public class Product implements Serializable {
-    String Id;
-    String CategoryId;
-    String Name;
-    String Price;
-    String Quantity;
-    String ImageId;
+@Entity(foreignKeys = @ForeignKey(entity = Category.class,
+parentColumns = {"categoryId"},
+childColumns = {"catelogyOwnerId"},
+onDelete = ForeignKey.CASCADE))
+public class Product implements Serializable{
+    @NonNull
+    @PrimaryKey
+    private String productId;
+    @ColumnInfo
+    private String catelogyOwnerId;
+    @ColumnInfo
+    private String productName;
+    @ColumnInfo
+    private String productPrice;
+    @ColumnInfo
+    private String productQuantity;
+    @ColumnInfo
+    private String ImageId;
 
-    public Product(String categoryId, String name, String price, String quantity, String imageId) {
-        CategoryId = categoryId;
-        Name = name;
-        Price = price;
-        Quantity = quantity;
+    public Product(){}
+
+    public Product(String catelogyOwnerId, String productName, String productPrice, String productQuantity, String imageId) {
+        this.catelogyOwnerId = catelogyOwnerId;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
         ImageId = imageId;
     }
-    public  Product(){
 
+    @NonNull
+    public String getProductId() {
+        return productId;
     }
 
-    public String getId() {
-        return Id;
+    public void setProductId(@NonNull String productId) {
+        this.productId = productId;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public String getCatelogyOwnerId() {
+        return catelogyOwnerId;
     }
 
-    public String getCategoryId() {
-        return CategoryId;
+    public void setCatelogyOwnerId(String catelogyOwnerId) {
+        this.catelogyOwnerId = catelogyOwnerId;
     }
 
-    public void setCategoryId(String categoryId) {
-        CategoryId = categoryId;
+    public String getProductName() {
+        return productName;
     }
 
-    public String getName() {
-        return Name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public String getProductPrice() {
+        return productPrice;
     }
 
-    public String getPrice() {
-        return Price;
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public void setPrice(String price) {
-        Price = price;
+    public String getProductQuantity() {
+        return productQuantity;
     }
 
-    public String getQuantity() {
-        return Quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        Quantity = quantity;
+    public void setProductQuantity(String productQuantity) {
+        this.productQuantity = productQuantity;
     }
 
     public String getImageId() {

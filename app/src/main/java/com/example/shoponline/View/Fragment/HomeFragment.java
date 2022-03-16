@@ -1,33 +1,52 @@
 package com.example.shoponline.View.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+import androidx.viewpager.widget.ViewPager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import com.example.shoponline.Common.MyRoomDatabase;
 import com.example.shoponline.Controller.CategoryController;
+import com.example.shoponline.Controller.Dao.CatelogyDao;
+import com.example.shoponline.Controller.Dao.ProductDao;
 import com.example.shoponline.Controller.ProductController;
+import com.example.shoponline.Controller.SlideShowController;
+import com.example.shoponline.Model.Category;
 import com.example.shoponline.Model.Product;
+import com.example.shoponline.Model.SlideShow;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.Adapter.ListProductHomeAdapter;
+import com.example.shoponline.View.Fragment.Adapter.The_Slide_items_Pager_Adapter;
+import com.example.shoponline.View.MainActivity;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 
-    private ImageView imageView;
-    private TextView tvName, tvPrice, tvQuantity;
-    private ArrayList<Product> products;
+    private List<Product> products;
+    private List<Category> categories;
+    private Spinner spinnerCatelogy;
     private ListProductHomeAdapter listProductHomeAdapter;
-    private RecyclerView rvProducts;
+    private ProductController productController;
+    private List<SlideShow> listSlideShow;
+    private ViewPager page;
+    private TabLayout tabLayout;
+    private MyRoomDatabase myRoomDatabase;
 
     public HomeFragment() {
     }
@@ -42,28 +61,86 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        rvProducts = view.findViewById(R.id.rvListProduct);
+        myRoomDatabase = Room.databaseBuilder(getContext(), MyRoomDatabase.class, "mydatabase.db")
+                .allowMainThreadQueries()
+                .build();
+        RecyclerView rvProducts = view.findViewById(R.id.rvListProduct);
+        spinnerCatelogy = view.findViewById(R.id.spinnerCatalog);
+        page = view.findViewById(R.id.my_pager) ;
+        tabLayout = view.findViewById(R.id.my_tablayout);
         initAction();
-
-        listProductHomeAdapter = new ListProductHomeAdapter(getContext(), products);
+        listProductHomeAdapter = new ListProductHomeAdapter(getContext(), (ArrayList<Product>) products);
         rvProducts.setAdapter(listProductHomeAdapter);
     }
 
     private void initAction() {
+        addSlideShow();
+        addCatelogy();
         addProdcut();
     }
 
+    private void addSlideShow() {
+        SlideShowController slideShowController = new SlideShowController();
+        listSlideShow = slideShowController.GetSlideShow();
+        The_Slide_items_Pager_Adapter itemsPager_adapter = new The_Slide_items_Pager_Adapter(getContext(), listSlideShow);
+        page.setAdapter(itemsPager_adapter);
+
+        // The_slide_timer
+        java.util.Timer timer = new java.util.Timer();
+        timer.scheduleAtFixedRate(new The_slide_timer(),2000,3000);
+        tabLayout.setupWithViewPager(page,true);
+    }
+
+    private void addCatelogy() {
+        CatelogyDao catelogyDao = myRoomDatabase.createCategoryDao();
+        categories = catelogyDao.getAllCategory();
+        Log.d("Check list categories", "" + categories);
+        categories.add(0, new Category("All"));
+        ArrayAdapter<Category> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, categories);
+        spinnerCatelogy.setAdapter(adapter);
+    }
+
     private void addProdcut() {
-        products = new ArrayList<Product>();
-        ProductController productController = new ProductController();
-        products = productController.GetAllProducts();
+        ProductDao productDao = myRoomDatabase.createProductDao();
+        products = productDao.getAllProduct();
 
+        spinnerCatelogy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String categoryName = spinnerCatelogy.getSelectedItem().toString();
+                Toast.makeText(getContext(), "" + categoryName, Toast.LENGTH_SHORT).show();
+                Category category = categories.get(i);
+                int id = (int) category.getCategoryId();
+                if (id != 0) {
+                    products = productDao.getAllProductById(id);
+                    listProductHomeAdapter.updateData((ArrayList<Product>) products);
+                    Log.d("Check update", "Update success");
+                } else {
+                    products = productDao.getAllProduct();
+                    listProductHomeAdapter.updateData((ArrayList<Product>) products);
+                }
+            }
 
-        //test API
-        CategoryController categoryController = new CategoryController();
-        categoryController.GetAllCategory();
-        productController.GetProductsByCategoryId(1);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+    }
+
+    private class The_slide_timer extends TimerTask {
+        @Override
+        public void run() {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (page.getCurrentItem()< listSlideShow.size()-1) {
+                        page.setCurrentItem(page.getCurrentItem()+1);
+                    }
+                    else
+                        page.setCurrentItem(0);
+                }
+            });
+        }
     }
 }

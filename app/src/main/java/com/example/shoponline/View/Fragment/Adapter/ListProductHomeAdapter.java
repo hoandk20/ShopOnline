@@ -50,9 +50,9 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
         ImageSupport imageSupport = new ImageSupport();
         Bitmap btmImage = imageSupport.getBitMapImagebyId(Long.parseLong(list.get(position).getImageId()));
         holder.imageView.setImageBitmap(btmImage);
-        holder.tvName.setText(list.get(position).getName());
-        holder.tvPrice.setText(list.get(position).getPrice() + "$");
-        holder.tvQuantity.setText(list.get(position).getQuantity());
+        holder.tvName.setText(list.get(position).getProductName());
+        holder.tvPrice.setText(list.get(position).getProductPrice() + "$");
+        holder.tvQuantity.setText(list.get(position).getProductQuantity());
 
         holder.rlProdcut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,6 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
             tvQuantity = itemView.findViewById(R.id.tvQuantityProduct);
             rlProdcut = itemView.findViewById(R.id.rlProduct);
             tvCategory = itemView.findViewById(R.id.tvCategory);
-
         }
     }
 }
