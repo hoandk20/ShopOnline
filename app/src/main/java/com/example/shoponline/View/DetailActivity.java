@@ -57,10 +57,10 @@ public class DetailActivity extends AppCompatActivity {
         ImageSupport imageSupport = new ImageSupport();
         Bitmap btmImage = imageSupport.getBitMapImagebyId(Long.parseLong(product.getImageId()));
         imageView.setImageBitmap(btmImage);
-        tvName.setText(product.getName());
-        tvPrice.setText(product.getPrice());
-        tvCategory.setText(product.getCategoryId());
-        tvQuantity.setText(product.getQuantity());
+        tvName.setText(product.getProductName());
+        tvPrice.setText(product.getProductPrice());
+        tvCategory.setText(product.getCatelogyOwnerId());
+        tvQuantity.setText(product.getProductQuantity());
     }
 
     private void nextAction() {

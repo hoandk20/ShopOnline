@@ -1,20 +1,23 @@
 package com.example.shoponline.Model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.sql.Date;
 
 public class Bill {
-    long id;
-    long accountId;
-    Date dateBuy;
-    long productId;
-    int quantity;
-    int totalQuantity;
-    double unitPrice;
-    double totalPrice;
-    String imageId;
-    String nameProduct;
-    String type;
-
+    private long id;
+    private long accountId;
+    private Date dateBuy;
+    private long productId;
+    private int quantity;
+    private int totalQuantity;
+    private double unitPrice;
+    private double totalPrice;
+    private String imageId;
+    private String nameProduct;
+    private String type;
 
     public Bill() {
     }
