@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">ShopOnline</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="notification">Notification</string>
+    <string name="menu">Menu</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="EditProfile">Edit Profile</string>
+    <string name="Name">User name</string>
+    <string name="phoneView">Phone number</string>
+    <string name="addressView">Address</string>
+    <string name="Button">Save</string>
+    <string name="oldPassword">Old password</string>
+    <string name="newPassword">New password</string>
+    <string name="inputPass">Confirm password</string>
+    <string name="editPass">Change password</string>
+    <string name="btnlogout">Log out</string>
+    <string name="products_purchased">Products purchased</string>
+    <string name="Name_app">OnlineShop</string>
+    <string name="From">From</string>
+    <string name="To">To</string>
 </resources>
