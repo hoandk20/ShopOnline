@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.shoponline.Common.API;
+import com.example.shoponline.Common.ImageSupport;
 import com.example.shoponline.Common.MyRoomDatabase;
 import com.example.shoponline.Controller.CategoryController;
 import com.example.shoponline.Controller.Dao.CatelogyDao;
@@ -24,6 +25,7 @@ import com.example.shoponline.Controller.Dao.ProductDao;
 import com.example.shoponline.Controller.LoginController;
 import com.example.shoponline.Controller.ProductController;
 import com.example.shoponline.Model.Category;
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.CartFragment;
@@ -77,8 +79,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadImage() {
-
-
+        ImageDao imageDao = myRoomDatabase.createImageDao();
+        ImageSupport imageSupport = new ImageSupport();
+        List<Image> imageList = imageSupport.getListImageBase64();
+        imageDao.insertImage(imageList);
+        Log.d("Check add image", "" + imageList.size());
     }
 
     private void loadProduct() {
