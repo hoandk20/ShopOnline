@@ -36,4 +36,8 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="registration">Registration</string>
+    <string name="delete">Delete</string>
+    <string name="payment">Payment</string>
+    <string name="the_shopping_cart_is_empty">The shopping cart is empty</string>
+    <string name="shopping_now">Shopping now</string>
 </resources>
