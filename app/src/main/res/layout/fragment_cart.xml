@@ -60,13 +60,12 @@
         android:id="@+id/rvProducts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/clBottomCart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clTopCart"
-        tools:listitem="@layout/item_product_cart"
-        android:visibility="visible"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_product_cart" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clBottomCart"
