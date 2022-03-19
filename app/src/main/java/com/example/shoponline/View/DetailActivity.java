@@ -3,14 +3,20 @@ package com.example.shoponline.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Controller.CartController;
+import com.example.shoponline.Model.Cart;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 
@@ -21,7 +27,8 @@ public class DetailActivity extends AppCompatActivity {
     ImageButton ibPrevious, ibNext;
     int amount = 0;
     double totalPrice = 0;
-
+    Button add,btnBackdetal;
+    Product product;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +45,23 @@ public class DetailActivity extends AppCompatActivity {
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
         tvAmount.setText(Integer.toString(amount));
         tvTotalPrice.setText(Double.toString(totalPrice));
+        add = findViewById(R.id.btnAddToCart);
+        btnBackdetal = findViewById(R.id.btnBackdetal);
 
         initAction();
+        btnBackdetal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void initAction() {
         loadDetail();
         previousAction();
         nextAction();
+        AddToCart();
     }
 
     private void loadDetail() {
@@ -53,7 +69,7 @@ public class DetailActivity extends AppCompatActivity {
         if (bundle == null){
             return;
         }
-        Product product = (Product) bundle.get("object_product");
+        product = (Product) bundle.get("object_product");
         ImageSupport imageSupport = new ImageSupport();
         Bitmap btmImage = imageSupport.getBitMapImagebyId(product.getImageId());
         imageView.setImageBitmap(btmImage);
@@ -105,6 +121,35 @@ public class DetailActivity extends AppCompatActivity {
                     totalPrice =  amount * price;
                     tvTotalPrice.setText(Double.toString(totalPrice));
                 }
+            }
+        });
+    }
+    private void AddToCart(){
+        add.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View view) {
+
+                Cart c = new Cart();
+                c.setProductName(tvName.getText().toString());
+                c.setQuantity(Integer.parseInt(tvQuantity.getText().toString()));
+                if(c.getQuantity()<=0){
+                    return;
+                }
+                c.setImageId(product.getImageId());
+                c.setUnitPrice(Double.parseDouble(product.getProductPrice()));
+                c.setProductId(Long.parseLong(product.getProductId()));
+                c.setTotalPrice(Integer.parseInt(tvQuantity.getText().toString())*Double.parseDouble(product.getProductPrice()));
+                CartController cartController = new CartController();
+                SharedPreferences sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
+                Long userid = sharedPreferences.getLong("UserId",0);
+                c.setAccountId(userid);
+
+                cartController.AddToCart(c);
+                Toast toast = Toast.makeText(view.getContext(),"Sucessfull",Toast.LENGTH_LONG);
+
+                toast.show();
+
             }
         });
     }

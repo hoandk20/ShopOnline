@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Model.Cart;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.CartFragment;
@@ -26,14 +27,14 @@ import java.util.ArrayList;
 public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCartAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<Product> list;
-    static ArrayList<Product> listCheckBox = new ArrayList<>();
+    ArrayList<Cart> list;
+    static ArrayList<Cart> listCheckBox = new ArrayList<>();
 
-    public static ArrayList<Product> getListCheckBox() {
+    public static ArrayList<Cart> getListCheckBox() {
         return listCheckBox;
     }
 
-    public ListProductCartAdapter(Context context, ArrayList<Product> list) {
+    public ListProductCartAdapter(Context context, ArrayList<Cart> list) {
         this.context = context;
         this.list = list;
     }
@@ -48,15 +49,15 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
 
     @Override
     public void onBindViewHolder(@NonNull ListProductCartAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Product product = list.get(position);
+        Cart cart = list.get(position);
 
         //detail product
         ImageSupport imageSupport = new ImageSupport();
         Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());
         holder.ivProduct.setImageBitmap(btmImage);
         holder.tvNameProduct.setText(list.get(position).getProductName());
-        holder.tvPriceProduct.setText(list.get(position).getProductPrice() + "$");
-        holder.tvQuantityProduct.setText(list.get(position).getProductQuantity());
+        holder.tvPriceProduct.setText(list.get(position).getUnitPrice() + "$");
+        holder.tvQuantityProduct.setText(list.get(position).getQuantity()+"");
 
         int quantity = Integer.parseInt((String) holder.tvQuantityProduct.getText());
         if(quantity==1){
@@ -71,7 +72,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
                 quantity--;
 
                 // thiếu trừ quantity trong controller
-                product.setProductQuantity(quantity+"");
+                cart.setQuantity(quantity);
 
                 holder.tvQuantityProduct.setText(quantity + "");
                 updateTotalAmount(listCheckBox);
@@ -87,7 +88,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
                 quantity++;
 
                 // thiếu cộng quantity trong controller
-                product.setProductQuantity(quantity+"");
+                cart.setQuantity(quantity);
 
                 holder.tvQuantityProduct.setText(quantity + "");
                 updateTotalAmount(listCheckBox);

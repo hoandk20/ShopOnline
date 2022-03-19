@@ -53,7 +53,6 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
         holder.tvName.setText(list.get(position).getProductName());
         holder.tvPrice.setText(list.get(position).getProductPrice() + "$");
         holder.tvQuantity.setText(list.get(position).getProductQuantity());
-
         holder.rlProdcut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

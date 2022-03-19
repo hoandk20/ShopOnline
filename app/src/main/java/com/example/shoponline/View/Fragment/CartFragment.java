@@ -4,7 +4,9 @@ import static com.example.shoponline.R.id.cbkProduct;
 import static com.example.shoponline.R.id.view;
 import static com.example.shoponline.View.Fragment.Adapter.ListProductCartAdapter.getListCheckBox;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,7 +23,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.shoponline.Controller.CartController;
 import com.example.shoponline.Controller.ProductController;
+import com.example.shoponline.Model.Cart;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.Adapter.ListProductCartAdapter;
@@ -30,7 +34,7 @@ import java.util.ArrayList;
 
 public class CartFragment extends Fragment{
 
-    private static ArrayList<Product> products;
+    private static ArrayList<Cart> carts;
     private ProductController productController;
     private static ListProductCartAdapter listProductCartAdapter;
     private static RecyclerView rvProducts;
@@ -87,25 +91,25 @@ public class CartFragment extends Fragment{
     }
 
 
-    public void deleteProductCart(ArrayList<Product> listCheckBox){
-        for (Product product: listCheckBox) {
-            products.remove(product);
+    public void deleteProductCart(ArrayList<Cart> listCheckBox){
+        for (Cart product: listCheckBox) {
+            carts.remove(product);
         }
         listCheckBox.clear();
         loadData();
     }
 
-    public static void updateTotalAmount(ArrayList<Product> listCheckBox){
+    public static void updateTotalAmount(ArrayList<Cart> listCheckBox){
         double total = 0;
-        for (Product product: listCheckBox) {
-            total = total + Double.parseDouble(product.getProductQuantity())*Double.parseDouble(product.getProductPrice());
+        for (Cart product: listCheckBox) {
+            total = total + product.getQuantity()*product.getUnitPrice();
         }
         tvTotalAmount.setText(total+"$");
     }
 
     public void loadData(){
         // RecyclerView visible
-        if(products.size()>0){
+        if(carts.size()>0){
             tvStatusCart.setVisibility(View.INVISIBLE);
             btnBackHome.setVisibility(View.INVISIBLE);
         }else {
@@ -116,17 +120,19 @@ public class CartFragment extends Fragment{
         updateTotalAmount(getListCheckBox());
 
         //set adapter
-        listProductCartAdapter = new ListProductCartAdapter(getContext(), products);
+        listProductCartAdapter = new ListProductCartAdapter(getContext(), carts);
         rvProducts.setAdapter(listProductCartAdapter);
     }
 
 
 
     private void loadProduct() {
-        productController = new ProductController();
-        //products cart demo
-        //getProductCart
-        products = productController.GetAllProducts();
+        CartController cartController = new CartController();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+
+        Long userid = sharedPreferences.getLong("UserId",0);
+        carts = cartController.GetCart(userid+"");
+
     }
 
 }

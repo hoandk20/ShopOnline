@@ -51,12 +51,10 @@ public class MainActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_main);
         myRoomDatabase = Room.databaseBuilder(MainActivity.this, MyRoomDatabase.class, "mydatabase.db")
-                .allowMainThreadQueries()
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
                 .build();
         loadData();
-        SharedPreferences pref = getSharedPreferences("User",MODE_PRIVATE);
-        String Username = pref.getString("Username","");
-        isLogin = (Username=="")?false:true;
+        checkLogin();
 
 
             replayceFragment(new HomeFragment());
@@ -65,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
             action();
 
 
+    }
+    void checkLogin(){
+        SharedPreferences pref = getSharedPreferences("User",MODE_PRIVATE);
+        String Username = pref.getString("Username","");
+        isLogin = (Username=="")?false:true;
     }
 
     private void loadData() {
@@ -133,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void replayceFragment(Fragment fragment){
+    public void replayceFragment(Fragment fragment){
+        checkLogin();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment);

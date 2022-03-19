@@ -155,8 +155,8 @@ public class MenuFragment extends Fragment {
                 editor.putString("Password","");
 
                 editor.commit();
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                startActivity(intent);
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.replayceFragment(new HomeFragment());
             }
         });
 
