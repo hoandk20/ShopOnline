@@ -18,7 +18,8 @@ public class API {
     public String GetCartByUserId = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetCartByUserId?InUserId=%s";
     public String AddToCart = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/AddToCart?InProductId=%s&InProductName=%s&InQuantity=%s&InUnitPrice=%s&InTotalPrice=%s&InAccountId=%s&InImageId=%s";
     public String UpdateAccount = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/UpdateAccount?InUsername=%s&InPassword=%s&InPhoneNumber=%s&InAddress=%s&InUserId=%s";
-
+    public String UpdatePassword = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/ChangePassword?InAccountId=%s&InPassword=%s";
+    public String GetListImageBase64 = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetListImageBase64";
     public String GetStringFromApi(String api){
 
         try {

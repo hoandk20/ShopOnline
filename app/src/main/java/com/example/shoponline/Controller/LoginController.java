@@ -33,6 +33,10 @@ public class LoginController {
         String ApiLogin = String.format(api.UpdateAccount,account.getUsername(),account.getPassword(),account.getPhone(),account.getAddress(),account.getId());
         String content = api.GetStringFromApi(ApiLogin);
     }
+    public void UpdatePassword (String Pass, String UserId){
+        String ApiLogin = String.format(api.UpdatePassword,UserId,Pass);
+        String content = api.GetStringFromApi(ApiLogin);
+    }
     public Account getAccountByName(String name){
         Account a = new Account();
         String ApiLogin = String.format(api.getAccountByName,name);

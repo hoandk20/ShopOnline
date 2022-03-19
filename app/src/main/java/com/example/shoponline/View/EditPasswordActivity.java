@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.shoponline.Controller.LoginController;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.MenuFragment;
 import com.google.android.material.textfield.TextInputEditText;
@@ -43,16 +44,18 @@ public class EditPasswordActivity extends AppCompatActivity {
         imageLeftPass = findViewById(R.id.imageLeftPass);
 
         SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-
+        editOld.setText(sharedPreferences.getString("Password",""));
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(editOld.getText().toString() == sharedPreferences.getString("password","")){
+                if(editOld.getText().toString().equals( sharedPreferences.getString("Password",""))){
+                    if(editNew.getText().toString().equals(editRe_end.getText().toString())  ){
 
-                    if(editNew.getText().toString() == editRe_end.getText().toString()){
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("password",editNew.getText().toString());
+                        editor.putString("Password",editNew.getText().toString());
                         editor.apply();
+                        LoginController loginController = new LoginController();
+                        loginController.UpdatePassword(editRe_end.getText().toString(),sharedPreferences.getLong("UserId",0)+"");
                         Toast.makeText(view.getContext(),"Change password successfully",Toast.LENGTH_LONG).show();
 
                     }else{
@@ -64,7 +67,6 @@ public class EditPasswordActivity extends AppCompatActivity {
                 }
             }
         });
-
         imageLeftPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
