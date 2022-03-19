@@ -1,32 +1,26 @@
 package com.example.shoponline.View.Fragment;
 
-import static com.example.shoponline.R.id.cbkProduct;
-import static com.example.shoponline.R.id.view;
 import static com.example.shoponline.View.Fragment.Adapter.ListProductCartAdapter.getListCheckBox;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.ContentInfo;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.shoponline.Controller.CartController;
 import com.example.shoponline.Controller.ProductController;
 import com.example.shoponline.Model.Cart;
-import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.Adapter.ListProductCartAdapter;
 
@@ -39,6 +33,7 @@ public class CartFragment extends Fragment{
     private static ListProductCartAdapter listProductCartAdapter;
     private static RecyclerView rvProducts;
     static TextView tvTotalAmount, tvStatusCart;
+    private ConstraintLayout clTopCart;
     private Button btnBackHome, btnDeleteProductCart, btnPayment;
 
     public CartFragment() {
@@ -63,7 +58,7 @@ public class CartFragment extends Fragment{
         btnBackHome = view.findViewById(R.id.btnBackHome);
         btnPayment = view.findViewById(R.id.btnPayment);
         btnDeleteProductCart = view.findViewById(R.id.btnDeleteProductCart);
-        tvStatusCart = view.findViewById(R.id.tvStatusCart);
+//        tvStatusCart = view.findViewById(R.id.tvStatusCart);
 
         loadProduct();
 
@@ -109,12 +104,13 @@ public class CartFragment extends Fragment{
 
     public void loadData(){
         // RecyclerView visible
-        if(carts.size()>0){
-            tvStatusCart.setVisibility(View.INVISIBLE);
-            btnBackHome.setVisibility(View.INVISIBLE);
-        }else {
-            rvProducts.setVisibility(View.INVISIBLE);
-        }
+//        if(carts.size()>0){
+//            rvProducts.setVisibility(View.VISIBLE);
+//            clTopCart.setVisibility(View.INVISIBLE);
+//        }else {
+//            rvProducts.setVisibility(View.INVISIBLE);
+//            clTopCart.setVisibility(View.VISIBLE);
+//        }
 
         // total amount
         updateTotalAmount(getListCheckBox());
@@ -129,10 +125,8 @@ public class CartFragment extends Fragment{
     private void loadProduct() {
         CartController cartController = new CartController();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
-
         Long userid = sharedPreferences.getLong("UserId",0);
         carts = cartController.GetCart(userid+"");
-
+        Log.d("Check cart", ""+carts.size());
     }
-
 }

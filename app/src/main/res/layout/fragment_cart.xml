@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fmCart"
@@ -9,116 +9,120 @@
     android:weightSum="10"
     tools:context=".View.Fragment.CartFragment">
 
-
-    <LinearLayout
-        android:layout_weight="1"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTopCart"
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/clBottomCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/tvShoppingCart"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/shopping_cart_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/the_shopping_cart_is_empty"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvShoppingCart" />
 
         <Button
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:id="@+id/btnDeleteProductCart"
-            android:text="Xóa"
-            android:textSize="20dp"></Button>
-    </LinearLayout>
-    <LinearLayout
+            android:id="@+id/btnBackHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/round_button_bg"
+            android:text="@string/shopping_now"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEmpty" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProducts"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clTopCart"
+        tools:listitem="@layout/item_product_cart"
+        android:visibility="visible"
+        />
 
-        <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBottomCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvStatusCart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Giỏ hàng của bạn đang trống"
-                    android:textColor="#454545"
-                    android:textSize="30sp" />
-
-                <Button
-                    android:id="@+id/btnBackHome"
-                    style="@style/Widget.AppCompat.Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="#FB3D02"
-                    android:text="Tiếp tục mua sắm"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"></Button>
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProducts"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvTotal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_product_cart"></androidx.recyclerview.widget.RecyclerView>
-        </FrameLayout>
-    </LinearLayout>
+                android:layout_marginStart="30dp"
+                android:text="Total:"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+            <TextView
+                android:id="@+id/tvTotalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tvTotal"
+                android:text="0.0$"
+                android:textColor="@color/red"
+                android:textSize="30sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            <Button
+                android:id="@+id/btnDeleteProductCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTotalAmount"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="30dp"
+                android:text="@string/delete"
+                android:textSize="20sp" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1">
+            <Button
+                android:id="@+id/btnPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvTotalAmount"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:text="@string/payment"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tổng Tiền : "
-                    android:textSize="30dp"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="right|center"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/tvTotalAmount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Value"
-                    android:textColor="#FF0000"
-                    android:textSize="30dp"></TextView>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnPayment"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FB3D02"
-        android:text="Thanh toán giỏ hàng"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"></Button>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
