@@ -13,11 +13,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Common.MyRoomDatabase;
+import com.example.shoponline.Controller.Dao.ImageDao;
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.DetailActivity;
+import com.example.shoponline.View.MainActivity;
 
 import java.util.ArrayList;
 
@@ -25,6 +30,7 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
 
     Context context;
     ArrayList<Product> list;
+    MyRoomDatabase myRoomDatabase;
 
     public ListProductHomeAdapter(Context context, ArrayList<Product> list) {
         this.context = context;
@@ -46,9 +52,14 @@ public class ListProductHomeAdapter extends RecyclerView.Adapter<ListProductHome
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Product product = list.get(position);
+        myRoomDatabase = Room.databaseBuilder(context, MyRoomDatabase.class, "mydatabase.db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
+        ImageDao imageDao = myRoomDatabase.createImageDao();
+        Image image = imageDao.loadImageById(Long.valueOf(list.get(position).getImageId()));
 
         ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
         holder.imageView.setImageBitmap(btmImage);
         holder.tvName.setText(list.get(position).getProductName());
         holder.tvPrice.setText(list.get(position).getProductPrice() + "$");

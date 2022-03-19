@@ -1,6 +1,7 @@
 package com.example.shoponline.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,8 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Common.MyRoomDatabase;
 import com.example.shoponline.Controller.CartController;
+import com.example.shoponline.Controller.Dao.ImageDao;
 import com.example.shoponline.Model.Cart;
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 
@@ -27,8 +31,10 @@ public class DetailActivity extends AppCompatActivity {
     ImageButton ibPrevious, ibNext;
     int amount = 0;
     double totalPrice = 0;
-    Button add,btnBackdetal;
+    Button add;
     Product product;
+    private MyRoomDatabase myRoomDatabase;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +52,12 @@ public class DetailActivity extends AppCompatActivity {
         tvAmount.setText(Integer.toString(amount));
         tvTotalPrice.setText(Double.toString(totalPrice));
         add = findViewById(R.id.btnAddToCart);
-        btnBackdetal = findViewById(R.id.btnBackdetal);
+        myRoomDatabase = Room.databaseBuilder(DetailActivity.this, MyRoomDatabase.class, "mydatabase.db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
+
 
         initAction();
-        btnBackdetal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
     private void initAction() {
@@ -70,8 +73,10 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
         product = (Product) bundle.get("object_product");
+        ImageDao imageDao = myRoomDatabase.createImageDao();
+        Image image = imageDao.loadImageById(Long.valueOf(product.getImageId()));
         ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(product.getImageId());
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
         imageView.setImageBitmap(btmImage);
         tvName.setText(product.getProductName());
         tvPrice.setText(product.getProductPrice());

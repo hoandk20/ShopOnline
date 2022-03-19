@@ -50,12 +50,12 @@ public class ImageSupport {
       return listBase64;
     }
 
-    public Bitmap getBitMapImagebyId(String ImageId){
-        String base64String = getLinkImageById(ImageId);
-        byte[] decodedString = Base64.getDecoder().decode(base64String);
+    public Bitmap getBitMapImagebyId(String s){
+        byte[] decodedString = Base64.getDecoder().decode(s);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;
     }
+
     public ArrayList<Bitmap> getListBitMapImageProduct(){
         ArrayList<String> listS = getListBase64ImageProduct();
         ArrayList<Bitmap> listBitmap =new ArrayList<>();
