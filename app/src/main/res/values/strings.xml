@@ -32,4 +32,8 @@
     <string name="Location">Location</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="registration">Registration</string>
 </resources>
