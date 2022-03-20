@@ -89,9 +89,15 @@ public class NotificationFragment extends Fragment {
 
     public void AddMessageBot(String text) {
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+        Long userId = sharedPreferences.getLong("UserId", 0);
+        String username = sharedPreferences.getString("Username", "");
         ChatController chatController = new ChatController();
-        Chat c = chatController.GetBotMessage(text);
+        Chat c = chatController.GetBotMessage(text,userId);
         listChat.add(c);
+        if(c.getContent().endsWith(".")){
+            listChat.add(new Chat("@Bot",chatController.getAddress(username)));
+        }
         listChatAdapter.updateData(listChat);
 
     }

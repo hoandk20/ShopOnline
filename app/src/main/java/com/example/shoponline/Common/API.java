@@ -24,6 +24,7 @@ public class API {
 
     public String GetBillByUserId = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetBillByUserId?InUseId=%s";
     public String AddBill= "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/AddToBill?InAccountId=%s&InProductName=%s&InProductId=%s&InQuantity=%s&InunitPrice=%s&InTotalPrice=%s&InImageId=%s";
+    public String GetProductById = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetProductById?InProductId=%s";
     public String GetStringFromApi(String api){
 
         try {

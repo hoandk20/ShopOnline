@@ -86,4 +86,13 @@ public class Product implements Serializable{
     public void setImageId(String imageId) {
         ImageId = imageId;
     }
+
+    @Override
+    public String toString() {
+        return
+                "Id:" + productId + "" +
+                ", Tên Sản phẩm: " + productName +
+                ", Giá: " + productPrice + "$" +
+                ", Số lượng hiện có: " + productQuantity +"\n Chat 'mua+số lượng+id' để mua sản phẩm";
+    }
 }
