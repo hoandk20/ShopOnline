@@ -20,6 +20,8 @@ public class API {
     public String UpdateAccount = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/UpdateAccount?InUsername=%s&InPassword=%s&InPhoneNumber=%s&InAddress=%s&InUserId=%s";
     public String UpdatePassword = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/ChangePassword?InAccountId=%s&InPassword=%s";
     public String GetListImageBase64 = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetListImageBase64";
+    public String GetBillByUserId = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetBillByUserId?InUseId=%s";
+    public String AddBill= "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/AddToBill?InAccountId=%s&InProductName=%s&InProductId=%s&InQuantity=%s&InunitPrice=%s&InTotalPrice=%s&InImageId=%s";
     public String GetStringFromApi(String api){
 
         try {

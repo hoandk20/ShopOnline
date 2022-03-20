@@ -63,7 +63,6 @@ public class CartFragment extends Fragment{
         clTopCart = view.findViewById(R.id.clTopCart);
 
         loadProduct();
-
         initAction();
 
         btnDeleteProductCart.setOnClickListener(new View.OnClickListener() {
@@ -119,8 +118,9 @@ public class CartFragment extends Fragment{
         updateTotalAmount(getListCheckBox());
 
         //set adapter
-        listProductCartAdapter = new ListProductCartAdapter(getContext(), carts);
+        listProductCartAdapter = new ListProductCartAdapter(getView().getContext(), carts);
         rvProducts.setAdapter(listProductCartAdapter);
+        listProductCartAdapter.updateData(carts);
     }
 
 

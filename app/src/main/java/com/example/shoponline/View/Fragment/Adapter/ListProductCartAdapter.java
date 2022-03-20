@@ -43,6 +43,10 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
         this.context = context;
         this.list = list;
     }
+    public void updateData(ArrayList<Cart> list) {
+        this.list = list;
+        notifyDataSetChanged();
+    }
 
 
     @NonNull
@@ -90,6 +94,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
                 updateTotalAmount(listCheckBox);
             }
         });
+
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
