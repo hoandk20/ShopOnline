@@ -16,7 +16,7 @@ public class BillController {
 
     public ArrayList<Bill> GetBill(String UserId){
         ArrayList<Bill> list = new ArrayList<>();
-        String ApiLogin = String.format(api.GetCartByUserId,UserId);
+        String ApiLogin = String.format(api.GetBillByUserId,UserId);
         String content = api.GetStringFromApi(ApiLogin);
         try {
             JSONObject obj = new JSONObject(content);

@@ -137,7 +137,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 Cart c = new Cart();
                 c.setProductName(tvName.getText().toString());
-                c.setQuantity(Integer.parseInt(tvQuantity.getText().toString()));
+                c.setQuantity(Integer.parseInt(tvAmount.getText().toString()));
                 if(c.getQuantity()<=0){
                     return;
                 }

@@ -1,5 +1,7 @@
 package com.example.shoponline.View.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Spinner;
 
 import com.example.shoponline.Common.MyRoomDatabase;
+import com.example.shoponline.Controller.BillController;
 import com.example.shoponline.Controller.Dao.BillDao;
 import com.example.shoponline.Controller.Dao.ProductDao;
 import com.example.shoponline.Controller.ProductController;
@@ -61,14 +64,11 @@ public class ListPurchasedOrderFragment extends Fragment {
                 .build();
         RecyclerView rvBill = view.findViewById(R.id.rvListProduct);
         rvBill.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        listBill.clear();
         listBill = new ArrayList<>();
-        //getAllBillByIdAccount();
-        listBill.add(new Bill("b01", 01, LocalDate.parse("18-12-2000", DateTimeFormatter.ofPattern("dd-MM-yyyy")),"p01",10,10,2000,20000,"abc","Bim Bim","a"));
-        listBill.add(new Bill("b02", 01, LocalDate.parse("18-12-2000", DateTimeFormatter.ofPattern("dd-MM-yyyy")),"p02",10,10,2000,20000,"abc","Bom","b"));
-        listBill.add(new Bill("b03", 01, LocalDate.parse("18-12-2000", DateTimeFormatter.ofPattern("dd-MM-yyyy")),"p03",10,10,2000,20000,"abc","Bao","c"));
-        listBill.add(new Bill("b04", 01, LocalDate.parse("18-12-2000", DateTimeFormatter.ofPattern("dd-MM-yyyy")),"p04",10,10,2000,20000,"abc","Min","d"));
-        listBill.add(new Bill("b05", 01, LocalDate.parse("18-12-2000", DateTimeFormatter.ofPattern("dd-MM-yyyy")),"p05",10,10,2000,20000,"abc","Hoa","e"));
+        BillController billController = new BillController();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+        Long userId = sharedPreferences.getLong("UserId",0);
+        listBill = billController.GetBill(userId+"");
 
         listPurchaseOrderAdapter = new ListPurchaseOrderAdapter(view.getContext(),listBill);
         rvBill.setAdapter(listPurchaseOrderAdapter);

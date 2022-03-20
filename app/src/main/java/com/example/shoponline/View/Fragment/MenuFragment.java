@@ -150,8 +150,8 @@ public class MenuFragment extends Fragment {
         textProducts_purchased.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ProductsPurchased_Activity.class);
-                startActivity(intent);
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.replayceFragment(new ListPurchasedOrderFragment());
             }
         });
         btnLogout.setOnClickListener(new View.OnClickListener() {

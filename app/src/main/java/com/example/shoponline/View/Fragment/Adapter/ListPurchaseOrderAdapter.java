@@ -13,9 +13,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Common.MyRoomDatabase;
+import com.example.shoponline.Controller.Dao.ImageDao;
 import com.example.shoponline.Model.Bill;
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.DetailActivity;
@@ -26,7 +30,7 @@ public class ListPurchaseOrderAdapter extends RecyclerView.Adapter<ListPurchaseO
 
     Context context;
     ArrayList<Bill> list;
-
+    MyRoomDatabase myRoomDatabase;
     public ListPurchaseOrderAdapter(Context context, ArrayList<Bill> list) {
         this.context = context;
         this.list = list;
@@ -43,13 +47,22 @@ public class ListPurchaseOrderAdapter extends RecyclerView.Adapter<ListPurchaseO
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         /*ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());
-        holder.imageOrderPurchased.setImageBitmap(btmImage);*/
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());*/
+
+        myRoomDatabase = Room.databaseBuilder(context, MyRoomDatabase.class, "mydatabase.db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
+        ImageDao imageDao = myRoomDatabase.createImageDao();
+        Image image = imageDao.loadImageById(Long.valueOf(list.get(position).getImageId()));
+        ImageSupport imageSupport = new ImageSupport();
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
+        holder.imageOrderPurchased.setImageBitmap(btmImage);
+
         holder.nameProductOrderPurchased.setText(list.get(position).getNameProduct());
         holder.typeOrderPurchased.setText(list.get(position).getType());
         holder.priceAllOrderPurchased.setText(list.get(position).getTotalPrice() + "$");
-        holder.numberTotalOrderPurchased.setText(list.get(position).getTotalQuantity());
-        holder.numberDetailOrderPurchased.setText(list.get(position).getQuantity());
+        holder.numberTotalOrderPurchased.setText(list.get(position).getTotalQuantity()+"");
+        holder.numberDetailOrderPurchased.setText(list.get(position).getQuantity()+"");
         holder.priceDetailOrderPurchased.setText(list.get(position).getUnitPrice() +"$");
 
         holder.DetailViewOrderPurchased.setOnClickListener(new View.OnClickListener() {

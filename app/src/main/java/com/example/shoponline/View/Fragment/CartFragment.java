@@ -83,12 +83,12 @@ public class CartFragment extends Fragment{
                 for (Cart cart: listProductCartAdapter.getListCheckBox()) {
                     Bill bill = new Bill();
                     bill.setAccountId(cart.getAccountId());
+                    bill.setProductId(cart.getProductId()+"");
                     bill.setImageId(cart.getImageId());
                     bill.setQuantity(cart.getQuantity());
                     bill.setTotalPrice(totalPrice);
                     bill.setNameProduct(cart.getProductName());
                     bill.setUnitPrice(cart.getUnitPrice());
-
                     billController.AddBill(bill);
                 }
                 deleteProductCart(listProductCartAdapter.getListCheckBox());
