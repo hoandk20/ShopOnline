@@ -1,16 +1,13 @@
 package com.example.shoponline.Model;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Bill {
-    private long id;
+    private String billId;
     private long accountId;
-    private Date dateBuy;
-    private long productId;
+    private LocalDate dateBuy;
+    private String productId;
     private int quantity;
     private int totalQuantity;
     private double unitPrice;
@@ -22,22 +19,26 @@ public class Bill {
     public Bill() {
     }
 
-
-
-    public int getTotalQuantity() {
-        return totalQuantity;
-    }
-
-    public void setTotalQuantity(int totalQuantity) {
+    public Bill(String billId, long accountId, LocalDate dateBuy, String productId, int quantity, int totalQuantity, double unitPrice, double totalPrice, String imageId, String nameProduct, String type) {
+        this.billId = billId;
+        this.accountId = accountId;
+        this.dateBuy = dateBuy;
+        this.productId = productId;
+        this.quantity = quantity;
         this.totalQuantity = totalQuantity;
+        this.unitPrice = unitPrice;
+        this.totalPrice = totalPrice;
+        this.imageId = imageId;
+        this.nameProduct = nameProduct;
+        this.type = type;
     }
 
-    public long getId() {
-        return id;
+    public String getBillId() {
+        return billId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setBillId(String billId) {
+        this.billId = billId;
     }
 
     public long getAccountId() {
@@ -48,19 +49,19 @@ public class Bill {
         this.accountId = accountId;
     }
 
-    public Date getDateBuy() {
+    public LocalDate getDateBuy() {
         return dateBuy;
     }
 
-    public void setDateBuy(Date dateBuy) {
+    public void setDateBuy(LocalDate dateBuy) {
         this.dateBuy = dateBuy;
     }
 
-    public long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -70,6 +71,14 @@ public class Bill {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 
     public double getUnitPrice() {

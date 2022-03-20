@@ -15,6 +15,7 @@ public class API {
     public String InsertAccount = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/InsertAccount?InUsername=%s&InPassword=%s&InPhoneNumber=%s&InAddress=%s";
     public String getAccountByName = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAccountInfo?InUsername=%s";
     public String GetListBase64ImageProduct = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllProductImage";
+    public String GetAllBillById = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllBillById?Id=%s";
 
     public String GetStringFromApi(String api){
 
