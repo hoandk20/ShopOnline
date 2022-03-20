@@ -113,7 +113,6 @@ public class MenuFragment extends Fragment {
         texteditLocation = view.findViewById(R.id.texteditLocation);
         imageView = view.findViewById(R.id.imageViewProfile);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
-
         textUserName.setText(sharedPreferences.getString("Username",""));
         textPhone.setText(sharedPreferences.getString("Phone",""));
         textAddress.setText(sharedPreferences.getString("Address",""));

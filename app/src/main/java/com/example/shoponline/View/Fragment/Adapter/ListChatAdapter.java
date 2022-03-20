@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.shoponline.Model.Cart;
 import com.example.shoponline.Model.Chat;
 import com.example.shoponline.R;
 
@@ -22,6 +23,10 @@ public class ListChatAdapter extends RecyclerView.Adapter<ListChatAdapter.MyView
     public ListChatAdapter(Context context, ArrayList<Chat> list) {
         this.context = context;
         this.list = list;
+    }
+    public void updateData(ArrayList<Chat> list) {
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull

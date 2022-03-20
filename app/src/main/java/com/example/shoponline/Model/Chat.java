@@ -4,6 +4,9 @@ public class Chat {
     private String senderId;
     private String content;
 
+    public Chat() {
+    }
+
     public Chat(String senderId, String content) {
         this.senderId = senderId;
         this.content = content;
