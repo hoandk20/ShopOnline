@@ -52,4 +52,9 @@ public class CartController {
         String content = api.GetStringFromApi(ApiLogin);
     }
 
+    public void DeleteCartById(Long id){
+        String ApiLogin = String.format(api.DeleteCartById, id);
+        String content = api.GetStringFromApi(ApiLogin);
+    }
+
 }

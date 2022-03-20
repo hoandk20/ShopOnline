@@ -151,7 +151,7 @@ public class DetailActivity extends AppCompatActivity {
                 c.setAccountId(userid);
 
                 cartController.AddToCart(c);
-                Toast toast = Toast.makeText(view.getContext(),"Sucessfull",Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(view.getContext(),"Successfully",Toast.LENGTH_LONG);
 
                 toast.show();
 

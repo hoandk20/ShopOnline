@@ -16,6 +16,7 @@ public class API {
     public String getAccountByName = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAccountInfo?InUsername=%s";
     public String GetListBase64ImageProduct = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllProductImage";
     public String GetCartByUserId = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetCartByUserId?InUserId=%s";
+    public String DeleteCartById = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/DeleteCartById?InCartId=%25s&fbclid=IwAR2ubIpH18bVL8-T-pMZJdeFaMheG-rgi7mxkj0xodfwwMJ3McaJizZiDH4";
     public String AddToCart = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/AddToCart?InProductId=%s&InProductName=%s&InQuantity=%s&InUnitPrice=%s&InTotalPrice=%s&InAccountId=%s&InImageId=%s";
     public String UpdateAccount = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/UpdateAccount?InUsername=%s&InPassword=%s&InPhoneNumber=%s&InAddress=%s&InUserId=%s";
     public String UpdatePassword = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/ChangePassword?InAccountId=%s&InPassword=%s";

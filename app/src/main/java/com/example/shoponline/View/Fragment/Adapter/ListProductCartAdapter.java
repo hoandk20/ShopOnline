@@ -33,10 +33,14 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
     Context context;
     ArrayList<Cart> list;
     MyRoomDatabase myRoomDatabase;
-    static ArrayList<Cart> listCheckBox = new ArrayList<>();
+    ArrayList<Cart> listCheckBox = new ArrayList<>();
 
-    public static ArrayList<Cart> getListCheckBox() {
+    public ArrayList<Cart> getListCheckBox() {
         return listCheckBox;
+    }
+
+    public void setListCheckBox(ArrayList<Cart> listCheckBox) {
+        this.listCheckBox = listCheckBox;
     }
 
     public ListProductCartAdapter(Context context, ArrayList<Cart> list) {
@@ -57,7 +61,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListProductCartAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Cart cart = list.get(position);
 
         //detail product
@@ -71,9 +75,9 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
         Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
 
         holder.ivProduct.setImageBitmap(btmImage);
-        holder.tvNameProduct.setText(list.get(position).getProductName());
-        holder.tvPriceProduct.setText(list.get(position).getUnitPrice() + "$");
-        holder.tvQuantityProduct.setText(list.get(position).getQuantity()+"");
+        holder.tvNameProduct.setText(cart.getProductName());
+        holder.tvPriceProduct.setText(cart.getUnitPrice() + "$");
+        holder.tvQuantityProduct.setText(cart.getQuantity()+"");
 
         int quantity = Integer.parseInt((String) holder.tvQuantityProduct.getText());
         if(quantity==1){
@@ -87,7 +91,6 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
                 if(quantity==2){ holder.btnMinus.setVisibility(View.INVISIBLE);}
                 quantity--;
 
-                // thiếu trừ quantity trong controller
                 cart.setQuantity(quantity);
 
                 holder.tvQuantityProduct.setText(quantity + "");
@@ -117,9 +120,9 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
             public void onClick(View view) {
                 if (list != null && list.size() > 0) {
                     if (holder.cbkProduct.isChecked()) {
-                        listCheckBox.add(list.get(position));
+                        listCheckBox.add(cart);
                     } else {
-                        listCheckBox.remove(list.get(position));
+                        listCheckBox.remove(cart);
                     }
                     updateTotalAmount(listCheckBox);
                 }
@@ -135,7 +138,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProduct;
-        TextView tvNameProduct, tvQuantityProduct, tvPriceProduct, tvTotalAmount;
+        TextView tvNameProduct, tvQuantityProduct, tvPriceProduct;
         Button btnMinus, btnPlus;
         CheckBox cbkProduct;
 
@@ -146,7 +149,6 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
             tvNameProduct = itemView.findViewById(R.id.tvNameProduct);
             tvQuantityProduct = itemView.findViewById(R.id.tvQuantityProduct);
             tvPriceProduct = itemView.findViewById(R.id.tvPriceProduct);
-            tvTotalAmount = itemView.findViewById(R.id.tvTotalAmount);
             btnMinus = itemView.findViewById(R.id.btnMinus);
             btnPlus = itemView.findViewById(R.id.btnPlus);
             cbkProduct = itemView.findViewById(R.id.cbkProduct);
