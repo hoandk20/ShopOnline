@@ -26,8 +26,8 @@ public class BillController {
                     Bill c = new Bill();
                     JSONObject o = new JSONObject();
                     o = (JSONObject)jsonArray.getJSONObject(i);
-                    c.setId(o.getLong("Id"));
-                    c.setProductId(o.getLong("ProductId"));
+                    c.setBillId(o.getString("Id"));
+                    c.setProductId(o.getString("ProductId"));
                     c.setNameProduct(o.getString("ProductName"));
                     c.setAccountId(o.getLong("AccountId"));
                     c.setQuantity(o.getInt("Quantity"));

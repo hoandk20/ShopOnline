@@ -20,7 +20,7 @@ public class HistoryPurchaseController {
     public ArrayList<Bill> GetAllBillById(String id){
         ArrayList<Bill> list = new ArrayList<>();
 
-        String ApiLogin = String.format(api.GetAllBillById,id);
+        String ApiLogin = String.format(api.GetBillByUserId,id);
         String content = api.GetStringFromApi(ApiLogin);
         try {
             JSONObject obj = new JSONObject(content);
