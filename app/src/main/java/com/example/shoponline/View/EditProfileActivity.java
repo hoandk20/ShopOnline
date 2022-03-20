@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shoponline.Controller.LoginController;
+import com.example.shoponline.Model.Account;
 import com.example.shoponline.R;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -29,20 +31,27 @@ public class EditProfileActivity extends AppCompatActivity {
         imageLeft = findViewById(R.id.imageLeftProfile);
 
         SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-
-        editUserName.setText(sharedPreferences.getString("UserId",""));
-        editPhone.setText(sharedPreferences.getString("phone",""));
-        editAddress.setText(sharedPreferences.getString("address",""));
-
+        Account account = new Account();
+        editUserName.setText(sharedPreferences.getString("Username",""));
+        editPhone.setText(sharedPreferences.getString("Phone",""));
+        editAddress.setText(sharedPreferences.getString("Address",""));
+        account.setId(sharedPreferences.getLong("UserId",0));
+        account.setImageId(sharedPreferences.getString("ImageId",""));
 
         btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("UserId",editUserName.getText().toString());
-                editor.putString("address",editAddress.getText().toString());
-                editor.putString("phone",editPhone.getText().toString());
+                editor.putString("Username",editUserName.getText().toString());
+                editor.putString("Address",editAddress.getText().toString());
+                editor.putString("Phone",editPhone.getText().toString());
                 editor.apply();
+                LoginController loginController = new LoginController();
+                account.setUsername(editUserName.getText().toString());
+                account.setPhone(editPhone.getText().toString());
+                account.setAddress(editAddress.getText().toString());
+                account.setPassword(sharedPreferences.getString("Password",""));
+                loginController.UpdateAccount(account);
 
                 Toast.makeText(view.getContext(),"Change profile successfully",Toast.LENGTH_LONG).show();
             }
@@ -51,7 +60,7 @@ public class EditProfileActivity extends AppCompatActivity {
         imageLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
             }
         });
     }

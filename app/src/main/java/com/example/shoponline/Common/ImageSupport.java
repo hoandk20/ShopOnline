@@ -3,6 +3,7 @@ package com.example.shoponline.Common;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.Model.Product;
 
 import org.json.JSONArray;
@@ -49,12 +50,12 @@ public class ImageSupport {
       return listBase64;
     }
 
-    public Bitmap getBitMapImagebyId(String ImageId){
-        String base64String = getLinkImageById(ImageId);
-        byte[] decodedString = Base64.getDecoder().decode(base64String);
+    public Bitmap getBitMapImagebyId(String s){
+        byte[] decodedString = Base64.getDecoder().decode(s);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;
     }
+
     public ArrayList<Bitmap> getListBitMapImageProduct(){
         ArrayList<String> listS = getListBase64ImageProduct();
         ArrayList<Bitmap> listBitmap =new ArrayList<>();
@@ -67,6 +68,30 @@ public class ImageSupport {
 
 
         return listBitmap;
+    }
+    public ArrayList<Image> getListImageBase64(){
+        ArrayList<Image> list = new ArrayList<>();
+
+        String ApiLogin = String.format(api.GetListImageBase64);
+        String content = api.GetStringFromApi(ApiLogin);
+        try {
+            JSONObject obj = new JSONObject(content);
+            JSONArray jsonArray = obj.getJSONArray("ListImage");
+            if (jsonArray != null) {
+
+                for (int i=0;i<jsonArray.length();i++){
+                    Image p = new Image();
+                    JSONObject o = new JSONObject();
+                    o = (JSONObject)jsonArray.getJSONObject(i);
+                    p.setImageId(o.getLong("Id"));
+                    p.setImageUrl(o.getString("Data"));
+                    list.add(p);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

@@ -15,8 +15,14 @@ public class API {
     public String InsertAccount = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/InsertAccount?InUsername=%s&InPassword=%s&InPhoneNumber=%s&InAddress=%s";
     public String getAccountByName = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAccountInfo?InUsername=%s";
     public String GetListBase64ImageProduct = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllProductImage";
-    public String GetAllBillById = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetAllBillById?Id=%s";
-
+    public String GetCartByUserId = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetCartByUserId?InUserId=%s";
+    public String DeleteCartById = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/DeleteCartById?InCartId=%25s&fbclid=IwAR2ubIpH18bVL8-T-pMZJdeFaMheG-rgi7mxkj0xodfwwMJ3McaJizZiDH4";
+    public String AddToCart = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/AddToCart?InProductId=%s&InProductName=%s&InQuantity=%s&InUnitPrice=%s&InTotalPrice=%s&InAccountId=%s&InImageId=%s";
+    public String UpdateAccount = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/UpdateAccount?InUsername=%s&InPassword=%s&InPhoneNumber=%s&InAddress=%s&InUserId=%s";
+    public String UpdatePassword = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/ChangePassword?InAccountId=%s&InPassword=%s";
+    public String GetListImageBase64 = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetListImageBase64";
+    public String GetBillByUserId = "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/GetBillByUserId?InUseId=%s";
+    public String AddBill= "https://personal-p3ceovob.outsystemscloud.com/ShoppingOnline/rest/API/AddToBill?InAccountId=%s&InProductName=%s&InProductId=%s&InQuantity=%s&InunitPrice=%s&InTotalPrice=%s&InImageId=%s";
     public String GetStringFromApi(String api){
 
         try {

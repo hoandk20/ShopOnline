@@ -10,6 +10,17 @@ public class Cart {
     private long Id;
     @ColumnInfo
     private long ProductId;
+
+    private String ProductName;
+
+    public String getProductName() {
+        return ProductName;
+    }
+
+    public void setProductName(String productName) {
+        ProductName = productName;
+    }
+
     @ColumnInfo
     private int Quantity;
     @ColumnInfo
@@ -18,8 +29,18 @@ public class Cart {
     private double TotalPrice;
     @ColumnInfo
     private long AccountId;
+    @ColumnInfo
+    private String ImageId;
 
     public Cart(){}
+
+    public String getImageId() {
+        return ImageId;
+    }
+
+    public void setImageId(String imageId) {
+        ImageId = imageId;
+    }
 
     public Cart(long id, long productId, int quantity, double unitPrice, double totalPrice, long accountId) {
         Id = id;

@@ -15,8 +15,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Common.MyRoomDatabase;
+import com.example.shoponline.Controller.Dao.ImageDao;
+import com.example.shoponline.Model.Cart;
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.CartFragment;
@@ -26,16 +31,25 @@ import java.util.ArrayList;
 public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCartAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<Product> list;
-    static ArrayList<Product> listCheckBox = new ArrayList<>();
+    ArrayList<Cart> list;
+    MyRoomDatabase myRoomDatabase;
+    ArrayList<Cart> listCheckBox = new ArrayList<>();
 
-    public static ArrayList<Product> getListCheckBox() {
+    public ArrayList<Cart> getListCheckBox() {
         return listCheckBox;
     }
 
-    public ListProductCartAdapter(Context context, ArrayList<Product> list) {
+    public void setListCheckBox(ArrayList<Cart> listCheckBox) {
+        this.listCheckBox = listCheckBox;
+    }
+
+    public ListProductCartAdapter(Context context, ArrayList<Cart> list) {
         this.context = context;
         this.list = list;
+    }
+    public void updateData(ArrayList<Cart> list) {
+        this.list = list;
+        notifyDataSetChanged();
     }
 
 
@@ -47,16 +61,23 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListProductCartAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        Product product = list.get(position);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Cart cart = list.get(position);
 
         //detail product
+        myRoomDatabase = Room.databaseBuilder(context, MyRoomDatabase.class, "mydatabase.db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
+
+        ImageDao imageDao = myRoomDatabase.createImageDao();
+        Image image = imageDao.loadImageById(Long.valueOf(cart.getImageId()));
         ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
+
         holder.ivProduct.setImageBitmap(btmImage);
-        holder.tvNameProduct.setText(list.get(position).getProductName());
-        holder.tvPriceProduct.setText(list.get(position).getProductPrice() + "$");
-        holder.tvQuantityProduct.setText(list.get(position).getProductQuantity());
+        holder.tvNameProduct.setText(cart.getProductName());
+        holder.tvPriceProduct.setText(cart.getUnitPrice() + "$");
+        holder.tvQuantityProduct.setText(cart.getQuantity()+"");
 
         int quantity = Integer.parseInt((String) holder.tvQuantityProduct.getText());
         if(quantity==1){
@@ -70,13 +91,13 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
                 if(quantity==2){ holder.btnMinus.setVisibility(View.INVISIBLE);}
                 quantity--;
 
-                // thiếu trừ quantity trong controller
-                product.setProductQuantity(quantity+"");
+                cart.setQuantity(quantity);
 
                 holder.tvQuantityProduct.setText(quantity + "");
                 updateTotalAmount(listCheckBox);
             }
         });
+
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,7 +108,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
                 quantity++;
 
                 // thiếu cộng quantity trong controller
-                product.setProductQuantity(quantity+"");
+                cart.setQuantity(quantity);
 
                 holder.tvQuantityProduct.setText(quantity + "");
                 updateTotalAmount(listCheckBox);
@@ -99,9 +120,9 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
             public void onClick(View view) {
                 if (list != null && list.size() > 0) {
                     if (holder.cbkProduct.isChecked()) {
-                        listCheckBox.add(list.get(position));
+                        listCheckBox.add(cart);
                     } else {
-                        listCheckBox.remove(list.get(position));
+                        listCheckBox.remove(cart);
                     }
                     updateTotalAmount(listCheckBox);
                 }
@@ -117,7 +138,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivProduct;
-        TextView tvNameProduct, tvQuantityProduct, tvPriceProduct, tvTotalAmount;
+        TextView tvNameProduct, tvQuantityProduct, tvPriceProduct;
         Button btnMinus, btnPlus;
         CheckBox cbkProduct;
 
@@ -128,7 +149,6 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
             tvNameProduct = itemView.findViewById(R.id.tvNameProduct);
             tvQuantityProduct = itemView.findViewById(R.id.tvQuantityProduct);
             tvPriceProduct = itemView.findViewById(R.id.tvPriceProduct);
-            tvTotalAmount = itemView.findViewById(R.id.tvTotalAmount);
             btnMinus = itemView.findViewById(R.id.btnMinus);
             btnPlus = itemView.findViewById(R.id.btnPlus);
             cbkProduct = itemView.findViewById(R.id.cbkProduct);

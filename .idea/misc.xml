@@ -4,20 +4,34 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Admin/AndroidStudioProjects/ShopOnline/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/cart_selector.xml" value="0.14351851851851852" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/default_indicator.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/home_selector.xml" value="0.14351851851851852" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/ic_baseline.xml" value="0.23796296296296296" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/ic_baseline_lock.xml" value="0.23796296296296296" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/ic_left.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/menu_selector.xml" value="0.1" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/notification_selector.xml" value="0.14351851851851852" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/round_border.xml" value="0.22407407407407406" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/round_button_bg.xml" value="0.22407407407407406" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/drawable/selected_indicator.xml" value="0.2703125" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/activity_detail.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/activity_edit_password.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/activity_edit_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/activity_products_purchased.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/activity_registration.xml" value="0.17447916666666666" />
-        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/fragment_cart.xml" value="0.1921875" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/fragment_cart.xml" value="0.264" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/fragment_detail.xml" value="0.2" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/fragment_home.xml" value="0.1921875" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/fragment_login.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/fragment_menu.xml" value="0.264" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/fragment_notification.xml" value="0.1921875" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/item_chat.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/item_product_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/layout/item_product_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Admin/Desktop/ShopOnline/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1921875" />
         <entry key="..\:/Users/Asus/Desktop/ISC18-3/ShopOnline/app/src/main/res/layout/fragment_home.xml" value="0.13134057971014493" />
@@ -30,6 +44,7 @@
         <entry key="..\:/Users/bobo0/Desktop/Clone/app/src/main/res/layout/fragment_notification.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/bobo0/Desktop/Clone/app/src/main/res/layout/item_chat.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/bobo0/Desktop/Clone/app/src/main/res/layout/item_product_cart.xml" value="0.19927536231884058" />
+        <entry key="..\:/Users/bobo0/Downloads/Clone/app/src/main/res/layout/fragment_cart.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24974358974358973" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/drawable/cart_selector.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/hp/Desktop/ShopOnline/app/src/main/res/drawable/ic_baseline_remove_red_eye.xml" value="0.2490740740740741" />

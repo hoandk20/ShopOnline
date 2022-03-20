@@ -75,4 +75,16 @@ public class ProductController {
     }
 
 
+    public String getResponseMessage (long Productid){
+
+        String des = "";
+
+        return des;
+    }
+
+    public void GetDescription(String ProductId){
+
+    }
+
+
 }

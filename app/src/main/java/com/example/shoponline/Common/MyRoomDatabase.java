@@ -16,7 +16,7 @@ import com.example.shoponline.Model.Product;
 
 @Database(entities = {Cart.class, Category.class,
         Discount.class, Image.class,
-        Product.class}, version = 1)
+        Product.class}, version = 2)
 public abstract class MyRoomDatabase extends RoomDatabase {
     public abstract CatelogyDao createCategoryDao();
     public abstract ImageDao createImageDao();

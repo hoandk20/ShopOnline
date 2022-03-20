@@ -65,11 +65,9 @@ public class LoginFragment extends Fragment {
                     editor.putString("Phone",a.getPhone());
                     editor.putString("Address",a.getAddress());
                     editor.putString("ImageId",a.getImageId());
-
-
                     editor.commit();
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
-                    startActivity(intent);
+                    MainActivity mainActivity = (MainActivity) getActivity();
+                    mainActivity.replayceFragment(new HomeFragment());
 
                 }else{
                     Toast toast= Toast.makeText(view.getContext(),"login failure",Toast.LENGTH_LONG);

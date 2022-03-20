@@ -3,11 +3,13 @@ package com.example.shoponline.View.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +20,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Common.MyRoomDatabase;
+import com.example.shoponline.Controller.Dao.ImageDao;
 import com.example.shoponline.MapActivity;
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.R;
+import com.example.shoponline.View.DetailActivity;
 import com.example.shoponline.View.EditPasswordActivity;
 import com.example.shoponline.View.EditProfileActivity;
 import com.example.shoponline.View.MainActivity;
@@ -88,10 +94,14 @@ public class MenuFragment extends Fragment {
     private TextView texteditPass;
     private TextView texteditLocation;
     private ImageView imageView;
+    private MyRoomDatabase myRoomDatabase;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        myRoomDatabase = Room.databaseBuilder(view.getContext(), MyRoomDatabase.class, "mydatabase.db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
 
         btnLogout = view.findViewById(R.id.btnLogOut);
         textUserName = view.findViewById(R.id.textUserName);
@@ -103,13 +113,16 @@ public class MenuFragment extends Fragment {
         texteditLocation = view.findViewById(R.id.texteditLocation);
         imageView = view.findViewById(R.id.imageViewProfile);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
-
         textUserName.setText(sharedPreferences.getString("Username",""));
         textPhone.setText(sharedPreferences.getString("Phone",""));
         textAddress.setText(sharedPreferences.getString("Address",""));
          String imageId = sharedPreferences.getString("ImageId","");
+
+        ImageDao imageDao = myRoomDatabase.createImageDao();
+        Image image = imageDao.loadImageById(Long.valueOf(imageId));
         ImageSupport imageSupport = new ImageSupport();
-        imageView.setImageBitmap(imageSupport.getBitMapImagebyId(imageId));
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
+        imageView.setImageBitmap(btmImage);
 
 
         texteditLocation.setOnClickListener(new View.OnClickListener() {
@@ -155,8 +168,8 @@ public class MenuFragment extends Fragment {
                 editor.putString("Password","");
 
                 editor.commit();
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                startActivity(intent);
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.replayceFragment(new HomeFragment());
             }
         });
 
