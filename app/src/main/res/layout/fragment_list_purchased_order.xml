@@ -77,7 +77,6 @@
             android:id="@+id/rvListProduct"
             android:layout_width="382dp"
             android:layout_height="588dp"
-
             android:layout_marginStart="12dp"
             android:layout_marginTop="24dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

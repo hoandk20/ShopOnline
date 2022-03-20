@@ -3,6 +3,7 @@ package com.example.shoponline.Common;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
+import com.example.shoponline.Controller.Dao.BillDao;
 import com.example.shoponline.Controller.Dao.CatelogyDao;
 import com.example.shoponline.Controller.Dao.ImageDao;
 import com.example.shoponline.Controller.Dao.ProductDao;
@@ -20,4 +21,5 @@ public abstract class MyRoomDatabase extends RoomDatabase {
     public abstract CatelogyDao createCategoryDao();
     public abstract ImageDao createImageDao();
     public abstract ProductDao createProductDao();
+    public abstract BillDao createBillDao();
 }
