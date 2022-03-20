@@ -15,9 +15,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.shoponline.Common.ImageSupport;
+import com.example.shoponline.Common.MyRoomDatabase;
+import com.example.shoponline.Controller.Dao.ImageDao;
 import com.example.shoponline.Model.Cart;
+import com.example.shoponline.Model.Image;
 import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
 import com.example.shoponline.View.Fragment.CartFragment;
@@ -28,6 +32,7 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
 
     Context context;
     ArrayList<Cart> list;
+    MyRoomDatabase myRoomDatabase;
     static ArrayList<Cart> listCheckBox = new ArrayList<>();
 
     public static ArrayList<Cart> getListCheckBox() {
@@ -52,8 +57,15 @@ public class ListProductCartAdapter extends RecyclerView.Adapter<ListProductCart
         Cart cart = list.get(position);
 
         //detail product
+        myRoomDatabase = Room.databaseBuilder(context, MyRoomDatabase.class, "mydatabase.db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration()
+                .build();
+
+        ImageDao imageDao = myRoomDatabase.createImageDao();
+        Image image = imageDao.loadImageById(Long.valueOf(cart.getImageId()));
         ImageSupport imageSupport = new ImageSupport();
-        Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());
+        Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
+
         holder.ivProduct.setImageBitmap(btmImage);
         holder.tvNameProduct.setText(list.get(position).getProductName());
         holder.tvPriceProduct.setText(list.get(position).getUnitPrice() + "$");

@@ -59,6 +59,8 @@ public class CartFragment extends Fragment{
         btnPayment = view.findViewById(R.id.btnPayment);
         btnDeleteProductCart = view.findViewById(R.id.btnDeleteProductCart);
 //        tvStatusCart = view.findViewById(R.id.tvStatusCart);
+        rvProducts = view.findViewById(R.id.rvProducts);
+        clTopCart = view.findViewById(R.id.clTopCart);
 
         loadProduct();
 
@@ -103,14 +105,15 @@ public class CartFragment extends Fragment{
     }
 
     public void loadData(){
-        // RecyclerView visible
-//        if(carts.size()>0){
-//            rvProducts.setVisibility(View.VISIBLE);
-//            clTopCart.setVisibility(View.INVISIBLE);
-//        }else {
-//            rvProducts.setVisibility(View.INVISIBLE);
-//            clTopCart.setVisibility(View.VISIBLE);
-//        }
+       //  RecyclerView visible
+        if(carts.size()>0){
+            rvProducts.setVisibility(View.VISIBLE);
+            clTopCart.setVisibility(View.INVISIBLE);
+
+        }else {
+            rvProducts.setVisibility(View.INVISIBLE);
+            clTopCart.setVisibility(View.VISIBLE);
+        }
 
         // total amount
         updateTotalAmount(getListCheckBox());
