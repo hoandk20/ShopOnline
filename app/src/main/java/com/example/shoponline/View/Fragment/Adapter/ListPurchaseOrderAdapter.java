@@ -1,14 +1,12 @@
 package com.example.shoponline.View.Fragment.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,10 +18,9 @@ import com.example.shoponline.Common.MyRoomDatabase;
 import com.example.shoponline.Controller.Dao.ImageDao;
 import com.example.shoponline.Model.Bill;
 import com.example.shoponline.Model.Image;
-import com.example.shoponline.Model.Product;
 import com.example.shoponline.R;
-import com.example.shoponline.View.DetailActivity;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ListPurchaseOrderAdapter extends RecyclerView.Adapter<ListPurchaseOrderAdapter.MyViewHolder> {
@@ -48,17 +45,28 @@ public class ListPurchaseOrderAdapter extends RecyclerView.Adapter<ListPurchaseO
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         /*ImageSupport imageSupport = new ImageSupport();
         Bitmap btmImage = imageSupport.getBitMapImagebyId(list.get(position).getImageId());*/
+        Bill bill = list.get(position);
 
         myRoomDatabase = Room.databaseBuilder(context, MyRoomDatabase.class, "mydatabase.db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration()
                 .build();
         ImageDao imageDao = myRoomDatabase.createImageDao();
-        Image image = imageDao.loadImageById(Long.valueOf(list.get(position).getImageId()));
+        Image image = imageDao.loadImageById(Long.valueOf(bill.getImageId()));
         ImageSupport imageSupport = new ImageSupport();
         Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
-        holder.imageOrderPurchased.setImageBitmap(btmImage);
 
-        holder.nameProductOrderPurchased.setText(list.get(position).getNameProduct());
+//        bill.getDateBuy().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        holder.imageOrderPurchased.setImageBitmap(btmImage);
+        holder.nameProductOrderPurchased.setText(bill.getNameProduct());
+//        holder.dateProduct.setText(bill.getDateBuy().format(DateTimeFormatter.ofPattern("dd-MMM-yy"))+"");
+//        Log.d("check date", bill.getDateBuy().format(DateTimeFormatter.ofPattern("dd-MMM-yy"))+"");
+        holder.quantityProduct.setText("x"+bill.getQuantity());
+        holder.dateBuyProduct.setText(bill.getDateBuy()+"");
+        if(bill.getDateBuy() == null){
+            Log.d("check date buy", "Ok");
+        }
+        holder.priceProduct.setText(bill.getUnitPrice()+"");
 
 
     }
@@ -70,12 +78,15 @@ public class ListPurchaseOrderAdapter extends RecyclerView.Adapter<ListPurchaseO
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageOrderPurchased;
-        TextView nameProductOrderPurchased,priceAllOrderPurchased,numberTotalOrderPurchased, typeOrderPurchased, numberDetailOrderPurchased, priceDetailOrderPurchased, DetailViewOrderPurchased;
+        TextView nameProductOrderPurchased,priceProduct,numberTotalOrderPurchased, quantityProduct, dateBuyProduct;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageOrderPurchased = itemView.findViewById(R.id.imageOrderPurchased);
             nameProductOrderPurchased = itemView.findViewById(R.id.nameProductOrderPurchased);
+            priceProduct = itemView.findViewById(R.id.priceProductOrderPurchased);
+            quantityProduct = itemView.findViewById(R.id.quantityProductOrderPurchased);
+            dateBuyProduct = itemView.findViewById(R.id.dateProductOrderPurchased);
         }
     }
 }

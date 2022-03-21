@@ -8,7 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BillController {
 
@@ -34,6 +36,7 @@ public class BillController {
                     c.setUnitPrice(o.getDouble("UnitPrice"));
                     c.setTotalPrice(o.getDouble("TotalPrice"));
                     c.setImageId(o.getString("ImageId"));
+                    c.setDateBuy(LocalDate.parse(o.getString("DateBuy")));
                     list.add(c);
 
                 }

@@ -66,6 +66,14 @@ public class CartFragment extends Fragment{
 
         initAction();
 
+        btnBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.replayceFragment(new HomeFragment());
+            }
+        });
+
         btnDeleteProductCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

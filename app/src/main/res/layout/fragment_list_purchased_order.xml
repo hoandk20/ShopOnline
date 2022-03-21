@@ -9,17 +9,14 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="5dp">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvListProduct"
-            android:layout_width="382dp"
-            android:layout_height="588dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="61dp"
             tools:listitem="@layout/item_order_purchased" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
