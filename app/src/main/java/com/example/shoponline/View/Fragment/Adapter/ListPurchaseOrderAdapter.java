@@ -59,17 +59,8 @@ public class ListPurchaseOrderAdapter extends RecyclerView.Adapter<ListPurchaseO
         holder.imageOrderPurchased.setImageBitmap(btmImage);
 
         holder.nameProductOrderPurchased.setText(list.get(position).getNameProduct());
-        holder.typeOrderPurchased.setText(list.get(position).getType());
-        holder.priceAllOrderPurchased.setText(list.get(position).getTotalPrice() + "$");
-        holder.numberTotalOrderPurchased.setText(list.get(position).getTotalQuantity()+"");
-        holder.numberDetailOrderPurchased.setText(list.get(position).getQuantity()+"");
-        holder.priceDetailOrderPurchased.setText(list.get(position).getUnitPrice() +"$");
 
-        holder.DetailViewOrderPurchased.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+
     }
 
     @Override
@@ -85,12 +76,6 @@ public class ListPurchaseOrderAdapter extends RecyclerView.Adapter<ListPurchaseO
             super(itemView);
             imageOrderPurchased = itemView.findViewById(R.id.imageOrderPurchased);
             nameProductOrderPurchased = itemView.findViewById(R.id.nameProductOrderPurchased);
-            typeOrderPurchased = itemView.findViewById(R.id.typeOrderPurchased);
-            numberDetailOrderPurchased = itemView.findViewById(R.id.numberDetailOrderPurchased);
-            DetailViewOrderPurchased = itemView.findViewById(R.id.DetailViewOrderPurchased);
-            priceDetailOrderPurchased = itemView.findViewById(R.id.priceDetailOrderPurchased);
-            numberTotalOrderPurchased = itemView.findViewById(R.id.numberTotalOrderPurchased);
-            priceAllOrderPurchased = itemView.findViewById(R.id.priceAllOrderPurchased);
         }
     }
 }
