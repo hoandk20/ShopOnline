@@ -38,6 +38,7 @@
             android:text="@string/the_shopping_cart_is_empty"
             android:textColor="@color/black"
             android:textSize="30sp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvShoppingCart" />

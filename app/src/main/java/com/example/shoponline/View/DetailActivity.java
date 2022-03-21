@@ -27,7 +27,7 @@ import com.example.shoponline.R;
 public class DetailActivity extends AppCompatActivity {
 
     ImageView imageView;
-    TextView tvName ,tvPrice ,tvQuantity ,tvCategory, tvAmount, tvTotalPrice;
+    TextView tvName ,tvPrice ,tvQuantity ,tvCategory, tvAmount, tvTotalPrice,tvId;
     ImageButton ibPrevious, ibNext;
     int amount = 0;
     double totalPrice = 0;
@@ -50,6 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         tvAmount = findViewById(R.id.tvAmount);
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
         tvAmount.setText(Integer.toString(amount));
+        tvId = findViewById(R.id.tvId);
         tvTotalPrice.setText(Double.toString(totalPrice));
         add = findViewById(R.id.btnAddToCart);
         myRoomDatabase = Room.databaseBuilder(DetailActivity.this, MyRoomDatabase.class, "mydatabase.db")
@@ -75,6 +76,7 @@ public class DetailActivity extends AppCompatActivity {
         product = (Product) bundle.get("object_product");
         ImageDao imageDao = myRoomDatabase.createImageDao();
         Image image = imageDao.loadImageById(Long.valueOf(product.getImageId()));
+        tvId.setText("Id: "+product.getProductId());
         ImageSupport imageSupport = new ImageSupport();
         Bitmap btmImage = imageSupport.getBitMapImagebyId(image.getImageUrl());
         imageView.setImageBitmap(btmImage);
