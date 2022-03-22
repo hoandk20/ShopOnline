@@ -61,8 +61,8 @@
 
                 <TextView
                     android:id="@+id/textUserName"
-                    android:layout_width="65dp"
-                    android:layout_height="39dp"
+                    android:layout_width="192dp"
+                    android:layout_height="36dp"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="36dp"
                     android:text="name"
@@ -151,6 +151,7 @@
                     android:drawableRight="@drawable/ic_right"
                     android:text="@string/Location"
                     android:textSize="18sp"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/texteditPass" />
         </androidx.constraintlayout.widget.ConstraintLayout>
