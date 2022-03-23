@@ -114,10 +114,12 @@
         android:id="@+id/llTotalPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="135dp"
         android:layout_marginBottom="46dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16">
 
         <ImageButton
             android:id="@+id/ibPrevious"
@@ -173,5 +175,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="31dp"
+        android:text="$"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceProduct"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

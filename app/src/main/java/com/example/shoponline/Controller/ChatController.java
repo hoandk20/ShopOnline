@@ -121,7 +121,7 @@ public class ChatController {
         b.setTotalPrice(Double.parseDouble(p.getProductPrice())*number);
         BillController billController = new BillController();
         billController.AddBill(b);
-        des= "Bạn đã mua"+b.getQuantity()+" sản phẩm '"+b.getNameProduct()+" với giá: "+b.getTotalPrice()+"" +
+        des= "Bạn đã mua"+b.getQuantity()+" sản phẩm '"+b.getNameProduct()+" với giá: "+b.getTotalPrice()+"$" +
                 "\nvui lòng kiểm tra lịch sử mua hàng.";
         return  des;
     }
